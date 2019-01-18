@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Test Offline Debugger ISYS" type="ApexOfflineDebuggerConfigurationType" factoryName="Apex Offline Debugger" show_console_on_std_err="false" show_console_on_std_out="false">
+    <option name="allowRunningInParallel" value="false" />
+    <option name="apexLogLevel" value="INFO" />
+    <option name="calloutsLogLevel" value="INFO" />
+    <option name="connectionName" />
+    <option name="databaseLogLevel" value="INFO" />
+    <option name="logBody" value="" />
+    <option name="profilingLogLevel" value="INFO" />
+    <option name="systemLogLevel" value="DEBUG" />
+    <option name="validationLogLevel" value="DEBUG" />
+    <option name="visualforceLogLevel" value="INFO" />
+    <option name="workflowLogLevel" value="INFO" />
+    <method v="2" />
+  </configuration>
+</component>

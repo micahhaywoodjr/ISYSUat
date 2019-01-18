@@ -349,7 +349,7 @@ global class CT_PopulateApprovalReportBatch implements Database.Batchable<sObjec
 		}
 		catch(Exception e){
 			Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-			String[] toAddresses = new String[] {'Diane.Campos@isyscm.com '};
+			String[] toAddresses = new String[] {'support@isyscm.com'};
 			mail.setToAddresses(toAddresses);
 			mail.setSubject('Error Processing CT_PopulateApprovalReportBatch');
 			mail.setPlainTextBody

@@ -87,7 +87,7 @@ global class BatchCaseMetrics implements Database.Batchable<sObject>, Database.S
     	}
     	catch(Exception e){
 			Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-			String[] toAddresses = new String[] {'Diane.Campos@isyscm.com '};
+			String[] toAddresses = new String[] {'support@isyscm.com'};
 			mail.setToAddresses(toAddresses);
 			mail.setSubject('Error Processing BatchCaseMetrics');
 			mail.setPlainTextBody
