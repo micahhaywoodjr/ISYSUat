@@ -1,0 +1,1013 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <compactLayoutAssignment>SYSTEMPersonAccount</compactLayoutAssignment>
+    <enableHistory>true</enableHistory>
+    <recordTypes>
+        <fullName>Individual</fullName>
+        <active>true</active>
+        <description>This record type is used to create an Individual record.</description>
+        <label>Individual</label>
+        <picklistValues>
+            <picklist>AccountSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Allowsmarketingevents__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>CEU_s_Required__pc</picklist>
+            <values>
+                <fullName>Maybe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Classification__c</picklist>
+            <values>
+                <fullName>Field Location</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Head Quarters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Location</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Contract__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verbal Agreement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Customer_Satisfaction_Index__c</picklist>
+            <values>
+                <fullName>A - Extremely Satisfied - Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B - Satisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C - Neutral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D - Dissatisfied - At risk of losing business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F - Unsatisfactory - Losing Business</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Favorite_Entertainment__pc</picklist>
+            <values>
+                <fullName>Concerts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plays</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sport - Baseball</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sport - Basketball</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sport - Football</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sport - Hockey</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Industry</picklist>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Apparel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Electronics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government - Education Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Education Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hospitality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance  - Long term Disability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance - Educational Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance - Longshore %26 Labor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance - Workers Comp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Machinery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not For Profit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IsCPabletoselectCMvendor__pc</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IsContactActivewiththisAccount__pc</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On leave</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ownership</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Subsidiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Contact_Day_of_Week__pc</picklist>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Friday</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monday</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thursday</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuesday</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wednesday</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Gratuities__pc</picklist>
+            <values>
+                <fullName>Gratuities %2451 - %24150</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gratuities 0 - %2450</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Gratuities Allowed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Method_of_Communication__pc</picklist>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Time_of_Communication__pc</picklist>
+            <values>
+                <fullName>Afternoon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Morning</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Products_Interested_In__pc</picklist>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Group Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Licensing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sponsorship</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Rating</picklist>
+            <values>
+                <fullName>Cold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__pc</picklist>
+            <values>
+                <fullName>Alabama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alaska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arizona</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arkansas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bakersfield Area</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colorado</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Connecticut</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delaware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Florida</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fresno North %26 South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hawaii</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Idaho</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Illinois</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Imperial County</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inland Empire-Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inland Empire-North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inland Empire-South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iowa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kansas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kentucky</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA Southbay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA Southeast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA Valley</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Beach%2FPasadena</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Louisiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maryland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massachusetts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Michigan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Minnesota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mississippi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Missouri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nebraska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nevada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Jersey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Carolina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Dakota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OC North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OC South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oakland%2FEast Bay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ohio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oklahoma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oregon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pennsylvania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SD Area North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SD Area South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SF Central %26 North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SF South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sacto Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sacto North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sacto South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Jose %26 South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SanGabriel Valley</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Santa Barbara%2BNorth</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Carolina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Dakota</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tennessee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Texas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utah</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ventura%2FOxnard Area</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vermont</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virginia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Washington</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Virginia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wisconsin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wyoming</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__pc</picklist>
+            <values>
+                <fullName>Accupuncturist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chiropractor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DME Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Decision Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economic Buyer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economic Decision Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Attorney</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employer Attorney</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Evaluator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Sponsor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Surgeon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Influencer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance Broker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interpreter Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neuro-Surgeon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ortho-Surgeon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pain Management Specialist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Therapist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Primary Treating Physician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychologist %2F Psychiatrist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RTW Specialist %2F Coordinator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Buyer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Special_Instructions__pc</picklist>
+            <values>
+                <fullName>Applied Risk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron Corporation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gallagher Bassett</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SYS Standards %26 Protocols</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sedgwick</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sentry Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Swift Transportation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Timezone__pc</picklist>
+            <values>
+                <fullName>%28GMT-04%3A00%29 Atlantic Standard Time %28Atlantic%2FBermuda%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%28GMT-05%3A00%29 Eastern Standard Time %28America%2FNew_York%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%28GMT-06%3A00%29 Central Standard Time %28America%2FChicago%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%28GMT-07%3A00%29 Mountain Standard Time %28America%2FDenver%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%28GMT-08%3A00%29 Pacific Standard Time %28America%2FLos_Angeles%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Applicant Attorney</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting Phys</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Direct Insurer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Independent Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - Self Insured Employer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer - TPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DME Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Defense Attorney</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Doctor %28PTP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interpretation Svcs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation Svcs</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Types_of_claims_handled__pc</picklist>
+            <values>
+                <fullName>Catastrophic %26 Complex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employer Specific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Routine File</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

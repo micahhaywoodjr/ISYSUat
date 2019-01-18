@@ -1,0 +1,6 @@
+<apex:page standardController="EmailMessage">
+  
+  <script>
+      window.location.replace("/{!EmailMessage.ActivityId}");
+  </script>
+</apex:page>

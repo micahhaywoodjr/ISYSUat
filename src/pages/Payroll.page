@@ -1,0 +1,206 @@
+<apex:page controller="Payroll">
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+        <link class="component" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" rel="stylesheet"
+              type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css"
+              media="screen"/>
+        <apex:stylesheet value="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css"/>
+
+    </head>
+    <apex:sectionHeader title="Payroll"/>
+    <apex:form >
+        <apex:pageMessages id="pageMessages"/>
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!processDateChange}" value="Go" rerender="process,prTable,pageMessages"
+                                    status="status" oncomplete="buttonsEnabled();" id="go_button"/>
+                <apex:actionStatus startText="Processing...." stopText="" id="status"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Start Date"/>
+                    <apex:inputField value="{!prTemp.sDate__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="End Date"/>
+                    <apex:inputField value="{!prTemp.eDate__c}"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection id="process">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="To be processed"/>
+                    <apex:selectList value="{!toBeProcessedSelected}" size="1">
+                        <apex:selectOptions value="{!toBeProcessedList}"/>
+                        <apex:actionSupport event="onchange" reRender="process,prTable" action="{!resetProcessed}"
+                                            status="status" oncomplete="buttonsEnabled();"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Processed"/>
+                    <apex:selectList value="{!processedSelected}" size="1">
+                        <apex:selectOptions value="{!processedList}"/>
+                        <apex:actionSupport event="onchange" rerender="process,prTable" action="{!resetToBeProcessed}"
+                                            status="status" oncomplete="buttonsEnabled();"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputPanel id="userAddedOpp">
+                        <apex:outputLabel value="Report"/>
+                        <apex:inputField value="{!userAddedPrTemp.Opportunity__c}"/>
+                    </apex:outputPanel>
+                    <apex:commandButton value="Add row" action="{!addRow}"
+                                        rerender="prTable,pageMessages,userAddedOpp"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!save_state}" value="Save" status="status" reRender="process" oncomplete="savePushed();" />
+                <apex:commandButton action="{!confirm}" value="Confirm"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!payrollTempSaveList}" var="pr" id="prTable">
+                <apex:column >
+                    <apex:commandLink action="{!deleteRow}" value="Delete" rendered="{!pr.IsUserAdded__c}"
+                                      rerender="pageMessages,prTable">
+                        <apex:param value="{!pr.UniqueKey__c}" name="uniqueKey" assignTo="{!uniqueKey}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column value="{!pr.EmployeeName__c}"/>
+                <apex:column value="{!pr.CaseNumber__c}"/>
+                <apex:column value="{!pr.ReportNumber__c}"/>
+                <apex:column value="{!pr.DateSubmitted__c}"/>
+                <apex:column value="{!pr.CaseName__c}"/>
+                <apex:column headerValue="{!$ObjectType.PayrollTemp__c.fields.ApprovedProfBillableHours__c.label}">
+                    <apex:inputField value="{!pr.ApprovedProfBillableHours__c}" styleClass="profBill"
+                                     onkeyup="calculateProfSum()"/>
+                    <apex:facet name="footer">
+                        Total: <span class="profBillSum">{!approvedProfBillHoursInitialSum}</span>
+                    </apex:facet>
+                </apex:column>
+                <apex:column headerValue="Prof Billable Hours">
+                    <apex:outputField value="{!pr.ApprovedProfBillableHoursCNE__c}"/>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.PayrollTemp__c.fields.ApprovedTWBillableHours__c.label}">
+                    <apex:outputPanel >
+                        <apex:inputField value="{!pr.ApprovedTWBillableHours__c}" styleClass="twBill"
+                                         onkeyup="calculateTWSum()"/>
+                    </apex:outputPanel>
+                    <apex:facet name="footer">
+                        Total: <span class="twBillSum">{!approvedTWBillHoursInitialSum}</span>
+                    </apex:facet>
+                </apex:column>
+                <apex:column headerValue="T/W Billable Hours">
+                    <apex:outputField value="{!pr.ApprovedTWBillableHoursCNE__c}"/>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.PayrollTemp__c.fields.Comments__c.label}">
+                    <apex:inputField value="{!pr.Comments__c}"/>
+                </apex:column>
+
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+    <script language="JavaScript">
+        function calculateProfSum() {
+            var profBillSum = 0;
+            //iterate through each textboxes and add the values
+            $(".profBill").each(function () {
+                //add only if the value is number
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    profBillSum += parseFloat(this.value);
+                }
+            });
+            //.toFixed() method will roundoff the final sum to 2 decimal places
+            $(".profBillSum").text(profBillSum.toFixed(2));
+        }
+        function calculateTWSum() {
+            var twBillSum = 0;
+            //iterate through each textboxes and add the values
+            $(".twBill").each(function () {
+                //add only if the value is number
+                if (!isNaN(this.value) && this.value.length != 0) {
+                    twBillSum += parseFloat(this.value);
+                }
+            });
+            //.toFixed() method will roundoff the final sum to 2 decimal places
+            $('.twBillSum').text(twBillSum.toFixed(2));
+        }
+
+        function buttonsEnabled() {
+            $("[id*='go_button']").removeAttr('disabled');
+            window.custom_table = $("table[id*='prTable']").DataTable({
+                "bPaginate": false,
+                "bFilter": false,
+                "bInfo" : false,
+                "order":[[2,'asc']],
+                "columnDefs": [
+                    {"orderable": false, "targets": 0},
+                    {"orderable": false, "targets": 1},
+                    {"orderable": false, "targets": 6},
+                    {"orderable": false, "targets": 7},
+                    {"orderable": false, "targets": 8},
+                    {"orderable": false, "targets": 9},
+                    {"orderable": false, "targets": 10},
+                ]
+            });
+            $('.headerRow').removeClass('headerRow');
+            $("select[name*='process']").change(function () {
+//                console.log("q Handler for .change() called.");
+                window.custom_table.destroy();
+            });
+
+        }
+        //this function fixes sort but having a pause in execution to let things finsih
+        function savePushed() {
+//            console.log('save Pushed');
+            setTimeout(function(){
+//                console.log('end processing wait');
+            }, 2000);
+
+
+        }
+
+        $(document).ready(function () {
+//            var table = $("table[id*='prTable']").DataTable();
+//            window.custom_table = table;
+            console.log('ready');
+            console.log($("select[name*='process']").val());
+            if(    $("select[name*='process']").val().length>0){
+                window.custom_table = $("table[id*='prTable']").DataTable({
+                    "bPaginate": false,
+                    "bFilter": false,
+                    "bInfo" : false,
+                    "order":[[2,'asc']],
+                    "columnDefs": [
+                        {"orderable": false, "targets": 0},
+                        {"orderable": false, "targets": 1},
+                        {"orderable": false, "targets": 6},
+                        {"orderable": false, "targets": 7},
+                        {"orderable": false, "targets": 8},
+                        {"orderable": false, "targets": 9},
+                        {"orderable": false, "targets": 10},
+                    ]
+                });
+                $('.headerRow').removeClass('headerRow');
+            }
+
+            $("select[name*='process']").change(function () {
+//                console.log("q Handler for .change() called.");
+                window.custom_table.destroy();
+            });
+
+
+            $("[id*='go_button']").click(function () {
+//                console.log('button clicked');
+                window.custom_table.destroy();
+                $("[id*='go_button']").attr('disabled', 'disabled');
+            });
+
+        });
+    </script>
+</apex:page>

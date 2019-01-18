@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Survey Results</relationshipLabel>
+        <relationshipName>Survey_Results</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Additional_Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please share any additional comments.</inlineHelpText>
+        <label>Additional Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Assist_with_Arrangements__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Did the ISYS case manager assist with arrangement of necessary services, diagnostic testing, medical supplies,  school information, community services?</inlineHelpText>
+        <label>Assist with Arrangements</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipName>Survey_Results</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Communicate__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Did the ISYS case manager communicate between you, family, providers, employer, insurance representative to facilitate resolutions and return to work options?</inlineHelpText>
+        <label>Communicate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Condition_Progressed_Comment__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Comment to - &quot;How has your condition progressed since your last contact from the case manager?</inlineHelpText>
+        <label>Condition Progressed Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Condition_Progressed__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How has your condition progressed since your last contact from the case manager?</inlineHelpText>
+        <label>Condition Progressed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ContactName__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact Name</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Survey Results</relationshipLabel>
+        <relationshipName>Survey_Results</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Comment__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Would you like to be contacted by ISYS?</inlineHelpText>
+        <label>Contact Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Contacted_by_ISYS__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Were you contacted by an ISYS employee within 24 hours of placing your referral?</inlineHelpText>
+        <label>Contacted by ISYS</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Describe_Organization_Comment__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Comment - Please describe your organization.</inlineHelpText>
+        <label>Describe Organization Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_Organization__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please describe your organization:</inlineHelpText>
+        <label>Describe Organization</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Describe_industry_Comment__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Comment - Please describe your industry:</inlineHelpText>
+        <label>Describe industry Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_industry__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please describe your industry:</inlineHelpText>
+        <label>Describe industry</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Discuss_Issues_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Discuss Issues Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Discuss_Issues__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Would you like to be contacted to discuss any issues or concerns?</inlineHelpText>
+        <label>Discuss Issues</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Explain_Purpose_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Explain Purpose Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Explain_Purpose__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Upon initial contact by the case manager did he/she explain to you the purpose of case management services and his/her role?</inlineHelpText>
+        <label>Explain Purpose</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Gained_Resources__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please Rate: Gained resources available that you did no know before?</inlineHelpText>
+        <label>Gained Resources</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Goals_Interventions_Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Comments related to Goals &amp; Interventions</inlineHelpText>
+        <label>Goals &amp; Interventions Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Goals_Interventions__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Were the Case Manager&apos;s goals and interventions consistent with your needs?</inlineHelpText>
+        <label>Goals &amp; Interventions</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Help_You_Understand__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Did the ISYS case manager help you to understand your diagnosis and select your treatment?</inlineHelpText>
+        <label>Help You Understand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Helpful__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Were the services of ISYS Solutions, Inc. helpful in dealing with your medical/vocational situation?</inlineHelpText>
+        <label>Helpful</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Increased_Knowledge__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please rate: Your level of increased knowledge about you condition and care?</inlineHelpText>
+        <label>Increased Knowledge</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Knowledgable_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Knowledgable Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Knowledgable__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Did the case manager seem knowledgeable about your condition, benefit entitlements and provide you with appropriate answers to your questons?</inlineHelpText>
+        <label>Knowledgable</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Employees__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of Employees:</inlineHelpText>
+        <label>Number of Employees</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Offer_Support__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Did the ISYS case manager offer you and/or your family member(s) support, encouragement, or assistance in coping with your condition?</inlineHelpText>
+        <label>Offer Support</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Overall_Rating__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Overall, how would you rate the services provided by your Case Manager? One star below average/Five stars excellent</inlineHelpText>
+        <label>Overall Rating</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rate_Frequency__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How would you rate the frequency of contact with the case manager?</inlineHelpText>
+        <label>Rate Frequency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Rate_Improvement__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please Rate: Improvement of self care and activity since your injury.</inlineHelpText>
+        <label>Rate Improvement</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Rate_Method_of_Contact__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How would you rate the frequency and method of contact with the Case Manager? Too Few - Just Right - Too Many</inlineHelpText>
+        <label>Rate &amp; Method of Contact</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Recommend_ISYS_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Recommend ISYS Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Recommend_ISYS__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Would you use and/or recommend ISYS for further case management services?</inlineHelpText>
+        <label>Recommend ISYS</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Selection_of_ISYS_Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Comments - Were you involved in the selection of ISYS&apos; services?</inlineHelpText>
+        <label>Selection of ISYS Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Selection_of_ISYS__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Were you involved in the selection of ISYS&apos; services?</inlineHelpText>
+        <label>Selection of ISYS</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Service_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Service_Needs__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Needs</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Services_Beneficial_Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Comments on the services beneficial question.</inlineHelpText>
+        <label>Services Beneficial Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Services_Beneficial__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Were case management services beneficial?</inlineHelpText>
+        <label>Services Beneficial</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Survey Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Claims Professional</fullName>
+                    <default>false</default>
+                    <label>Claims Professional</label>
+                </value>
+                <value>
+                    <fullName>Employer</fullName>
+                    <default>false</default>
+                    <label>Employer</label>
+                </value>
+                <value>
+                    <fullName>Employee</fullName>
+                    <default>false</default>
+                    <label>Employee</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Timing__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Do you feel case management intervention came:  too early - at the right time - too late</inlineHelpText>
+        <label>Timing</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Survey Results</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Case__c</columns>
+        <columns>ContactName__c</columns>
+        <columns>Account__c</columns>
+        <columns>Overall_Rating__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>S-{000000}</displayFormat>
+        <label>Survey Results Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Survey Results</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Claims_Professional</fullName>
+        <active>true</active>
+        <description>Survey Results from Claims Professional</description>
+        <label>Claims Professional</label>
+        <picklistValues>
+            <picklist>Survey_Type__c</picklist>
+            <values>
+                <fullName>Claims Professional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Employee</fullName>
+        <active>true</active>
+        <description>Survey Results from Employee</description>
+        <label>Employee</label>
+        <picklistValues>
+            <picklist>Survey_Type__c</picklist>
+            <values>
+                <fullName>Claims Professional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Employer</fullName>
+        <active>true</active>
+        <description>Survey Results from Employer</description>
+        <label>Employer</label>
+        <picklistValues>
+            <picklist>Survey_Type__c</picklist>
+            <values>
+                <fullName>Claims Professional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

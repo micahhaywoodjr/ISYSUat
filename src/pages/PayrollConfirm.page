@@ -1,0 +1,64 @@
+<apex:page controller="Payroll">
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+
+        <apex:stylesheet value="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css"/>
+
+    </head>
+    <apex:sectionHeader title="Payroll Confirmation"/>
+    <apex:form >
+        <apex:pageMessages id="pageMessages"/>
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save_state}" value="Save"  />
+                <apex:commandButton action="{!previous_page}" value="Previous Page"/>
+                <apex:commandButton action="{!save}" value="Submit"/>
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!payrollTempSaveList}" var="pr" id="prTable">
+                <apex:column value="{!pr.EmployeeName__c}"/>
+                <apex:column value="{!pr.CaseNumber__c}"/>
+                <apex:column value="{!pr.DateSubmitted__c}"/>
+                <apex:column value="{!pr.CaseName__c}"/>
+                <apex:column headerValue="{!$ObjectType.PayrollTemp__c.fields.ApprovedProfBillableHours__c.label}">
+                    <apex:outputField value="{!pr.ApprovedProfBillableHours__c}"/>
+                    <apex:facet name="footer">
+                        Total: <span class="profBillSum">{!approvedProfBillHoursInitialSum}</span>
+                    </apex:facet>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.PayrollTemp__c.fields.ApprovedTWBillableHours__c.label}">
+                    <apex:outputField value="{!pr.ApprovedTWBillableHours__c}"/>
+                    <apex:facet name="footer">
+                        Total: <span class="twBillSum">{!approvedTWBillHoursInitialSum}</span>
+                    </apex:facet>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.PayrollTemp__c.fields.Comments__c.label}">
+                    <apex:outputField value="{!pr.Comments__c}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockSection >
+                <apex:inputField value="{!prTemp.TotalCaseManagementBillableTime__c}"/>
+                <apex:inputField value="{!prTemp.HrNotes__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+    <script language="JavaScript">
+
+        $(document).ready(function () {
+            var table = $("table[id*='prTable']").DataTable({
+                "bPaginate": false,
+                "bFilter": false,
+                "order":[[1,'asc']],
+                "columnDefs": [
+                    { "orderable": false, "targets": 0 },
+                    { "orderable": false, "targets": 6 },
+                ]
+            });
+            window.custom_table = table;
+            $('.headerRow').removeClass('headerRow');
+
+        });
+    </script>
+</apex:page>

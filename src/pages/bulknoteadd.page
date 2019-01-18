@@ -1,0 +1,248 @@
+<apex:page controller="bulkNoteAddController" 
+    sidebar="false"
+    tabStyle="Case_Note_Entry__c">
+    <apex:pagemessages id="error"></apex:pagemessages>
+    <apex:sectionHeader title="Case Note Entry" subtitle="{!subtitle}"/>
+   
+   
+   
+   <style type="text/css">
+        .gridField {
+            padding-top: 5px;
+        }
+        
+        .gridField.top {
+            padding-top: 0px;
+        }
+        
+        .gridField Label {
+            font-size: 0.9em;
+            font-weight: bold;
+            font-style: italic;
+            width: 100%; 
+        }
+        
+        .gridField Select {
+            width: 380px;
+        }
+        
+        .gridField TextArea {
+            width: 380px;
+            height: 80px;
+            margin-bottom: 5px;
+        }
+        
+        .gridField.checkbox {
+            padding-top: 10px;
+        }
+        
+        .checkbox Label {
+            font-style: normal;
+            padding-bottom: 2px;
+        }
+        
+        .gridField .blockLabel {
+            display: block;
+            padding-bottom: 3px;
+        }
+        
+        .gridSubField {
+            padding-top: 0px;
+        }
+        
+        .gridSubField.top {
+            padding-top: 5px;
+        }
+        
+        .gridSubField Label {
+            font-style: normal;
+        }
+   </style>
+   
+   <apex:outputPanel layout="block" rendered="{!NOT(hasEntries)}">
+        <apex:form >
+            <p>There are currently no case note entries available for edit.</p>
+            <apex:commandButton action="{!addNotes}" value="Add Case Notes"/>
+            <apex:commandButton action="{!cancel}" value="Cancel"/>
+       </apex:form>
+   </apex:outputPanel>
+   
+   <apex:outputPanel layout="none" rendered="{!hasEntries}">
+    <apex:form id="noteForm">    
+    <apex:actionFunction id="reloadMinMax" name="reloadMinMax" action="{!billingCodeChanged}" rerender="billingCodeRegion" status="status">
+        <apex:param name="selectedBillingCode" assignTo="{!selectedBillingCodeId}" value="" />
+        <apex:param name="currentCaseNoteIndex" assignTo="{!currentCaseNoteIndex}" value="" />
+    </apex:actionFunction>
+
+    <apex:pageblock id="blockCaseNotes" title="{!IF(editMode,'Edit','Add')} Case Notes for {!parentOpportunity.Name}">
+        <apex:pageMessages />
+        
+        <apex:pageblockbuttons >
+        
+            <!--<apex:commandbutton action="{!save}" value="Save" />
+            <apex:commandbutton action="{!saveNew}" value="Save and New" /> -->
+            
+            <apex:commandButton value="Save" action="{!save}"  reRender="error"/> 
+                                                 
+            <apex:commandButton value="Save & New" action="{!saveNew}"  reRender="error"/> 
+            
+            <apex:commandbutton action="{!saveApprove}" value="Save and Approve" rendered="{!allowSaveAndApprove}"/>
+            <apex:commandbutton immediate="true" action="{!cancel}" value="Cancel" /> 
+                   
+        </apex:pageblockbuttons>
+        
+        <apex:outputPanel layout="block" rendered="{!showPageNavigation}" style="text-align: right;">
+            <apex:commandbutton disabled="{!NOT(allowMovePrev)}" rerender="blockCaseNotes" action="{!movePrev}" value="Previous" />
+            <apex:commandbutton disabled="{!NOT(allowMoveNext)}" rerender="blockCaseNotes" action="{!moveNext}" value="Next" /> 
+        </apex:outputPanel>
+        
+        <apex:pageBlockTable value="{!pageData}" var="item">
+            <apex:column headerValue="Activity Date">
+                <apex:outputPanel layout="block" styleClass="gridField top">
+                    <apex:outputLabel value="Activity Date:" for="activityDate" styleClass="blockLabel"/>
+                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                        <div class="requiredBlock"></div>
+                        <apex:inputField id="activityDate" value="{!item.entry.Activity_Date__c}" onchange="javascript:setFocus('{!$Component.billingCode}');" required="false"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </apex:column>
+            
+            <apex:column headerValue="Billing Code & Description">
+                <apex:actionRegion >
+                    <apex:outputPanel id="billingCodeRegion" layout="block" styleClass="gridField top">
+                        <apex:outputLabel value="Billing Code:" for="billingCode" styleClass="blockLabel"/>
+                        <apex:selectList id="billingCode" value="{!item.entry.Billing_Code__c}" size="1" rendered="true" onblur="reloadMinMax(this.value, {!item.rowIndex});">  
+                            <apex:selectOptions value="{!BillingCodeOptions}" />
+                        </apex:selectList>
+                        
+                        <apex:outputPanel layout="block" styleClass="gridSubField top">
+                            <apex:outputLabel value="Min: " for="billingMin"/>
+                            <apex:outputText id="billingMin" value="{!item.billingMin}"/>
+                        </apex:outputPanel>    
+                           
+                        <apex:outputPanel layout="block" styleClass="gridSubField">
+                            <apex:outputLabel value="Max: " for="billingMax"/>
+                            <apex:outputText id="billingMax" value="{!item.billingMax}"/>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:actionRegion>
+                
+                <apex:outputPanel layout="block" styleClass="gridField">
+                    <apex:outputPanel layout="block" styleClass="blockLabel">
+                        <apex:outputLabel value="Case Note Description: " for="description"/>
+                        <apex:outputPanel layout="inline" styleClass="textCounterOuter">
+                            <div class="textCounterMiddle">
+                                <apex:outputPanel layout="block" id="description_counter" styleClass="textCounter"/>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <apex:inputfield id="description" value="{!item.entry.Work_Description__c}"  
+                        onkeyup="limitText('{!$Component.description}',255);" 
+                        onchange="limitText('{!$Component.description}',255);" 
+                        required="False"/>
+                </apex:outputPanel>
+            </apex:column>
+            
+            <apex:column headerValue="Time & Expenses">
+                <!-- A Note Fields -->
+                <apex:outputPanel layout="none" rendered="{!NOT(auditMode)}">
+                    <apex:outputPanel layout="block" styleClass="gridField top">
+                        <apex:outputLabel value="{!$ObjectType.Case_Note_Entry__c.fields.Professional_Hours_Nurse__c.label}:" for="profHours" styleClass="blockLabel"/>
+                        <apex:inputfield id="profHours" value="{!item.entry.Professional_Hours_Nurse__c}" required="false" />
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="block" styleClass="gridField">
+                        <apex:outputLabel value="{!$ObjectType.Case_Note_Entry__c.fields.Travel_Wait_Hours_Nurse__c.label}:" for="nonProfHours" styleClass="blockLabel"/>
+                        <apex:inputfield id="nonProfHours" value="{!item.entry.Travel_Wait_Hours_Nurse__c}" required="false" />
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="block" styleClass="gridField">
+                        <apex:outputLabel value="{!$ObjectType.Case_Note_Entry__c.fields.Expenses_Nurse__c.label}:" for="expAmount" styleClass="blockLabel"/>
+                        <apex:inputfield id="expAmount" value="{!item.entry.Expenses_Nurse__c}" required="false" />
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <!-- B Note Fields -->
+                <apex:outputPanel layout="none" rendered="{!auditMode}">
+                    <apex:outputPanel layout="block" styleClass="gridField top">
+                        <apex:outputLabel value="{!$ObjectType.Case_Note_Entry__c.fields.Adj_Professional_Hours__c.label}:" for="b_profHours" styleClass="blockLabel"/>
+                        <apex:inputfield id="b_profHours" value="{!item.entry.Adj_Professional_Hours__c}" required="false" />
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="block" styleClass="gridField">
+                        <apex:outputLabel value="{!$ObjectType.Case_Note_Entry__c.fields.Adj_Travel_Wait_Hours__c.label}:" for="b_nonProfHours" styleClass="blockLabel"/>
+                        <apex:inputfield id="b_nonProfHours" value="{!item.entry.Adj_Travel_Wait_Hours__c}" required="false" />
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="block" styleClass="gridField">
+                        <apex:outputLabel value="{!$ObjectType.Case_Note_Entry__c.fields.Adj_Expenses__c.label}:" for="b_expAmount" styleClass="blockLabel"/>
+                        <apex:inputfield id="b_expAmount" value="{!item.entry.Adj_Expenses__c}" required="false" />
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <!-- A/B Fields -->
+                <apex:outputPanel layout="block" styleClass="gridField checkbox">
+                    <apex:inputCheckbox id="chkRush" value="{!item.entry.Rush__c}" required="false" />
+                    <apex:outputLabel value="Special Services Rate" for="chkRush"/>
+                </apex:outputPanel>
+                
+            </apex:column>
+            
+            <apex:column headerValue="Mileage">
+                <!-- A Note Fields -->
+                <apex:outputPanel layout="block" styleClass="gridField top" rendered="{!NOT(auditMode)}">
+                    <apex:outputLabel value="{!$ObjectType.Case_Note_Entry__c.fields.Mileage_Nurse__c.label}:" for="mileage" styleClass="blockLabel"/>
+                    <apex:inputfield id="mileage" value="{!item.entry.Mileage_Nurse__c}" required="false" />
+                </apex:outputPanel>
+                
+                <!-- B Note Fields -->
+                <apex:outputPanel layout="block" styleClass="gridField top" rendered="{!auditMode}">
+                    <apex:outputLabel value="{!$ObjectType.Case_Note_Entry__c.fields.Adj_Mileage__c.label}:" for="b_mileage" styleClass="blockLabel"/>
+                    <apex:inputfield id="b_mileage" value="{!item.entry.Adj_Mileage__c}" required="false" />
+                </apex:outputPanel>
+                
+                <!-- A/B Fields -->                
+                <apex:outputPanel layout="block" styleClass="gridField">
+                    <apex:outputLabel value="From (city):" for="fromCity" styleClass="blockLabel"/>
+                    <apex:inputfield id="fromCity" value="{!item.entry.Driving_From_City__c}" required="false" />
+                </apex:outputPanel>
+                
+                <apex:outputPanel layout="block" styleClass="gridField">
+                    <apex:outputLabel value="To (city):  " for="toCity" styleClass="blockLabel"/>
+                    <apex:inputfield id="tocity" value="{!item.entry.Driving_To_City__c}" required="false" />
+                </apex:outputPanel>
+                
+            </apex:column>
+        </apex:pageBlockTable>
+ 
+        
+        <apex:outputPanel layout="block" rendered="{!showPageNavigation}" style="text-align: right;">
+            <apex:commandbutton disabled="{!NOT(allowMovePrev)}" rerender="blockCaseNotes" action="{!movePrev}" value="Previous" />
+            <apex:commandbutton disabled="{!NOT(allowMoveNext)}" rerender="blockCaseNotes" action="{!moveNext}" value="Next" /> 
+        </apex:outputPanel>
+                
+    </apex:pageblock>
+    </apex:form>
+    
+    <script type="text/javascript">
+        function setFocus(id) {
+            var element = document.getElementById(id);
+            if (element != null) {
+                element.focus();
+            }
+        }
+        
+        function limitText(limitFieldId, limitNum) {
+            var limitField = document.getElementById(limitFieldId);
+            if (limitField != null) {
+                var len = limitField.value.length;
+                if (len >= limitNum) {
+                    limitField.value = limitField.value.substring(0,limitNum);
+                    handleTextAreaElementChange(limitFieldId, limitNum, 'remaining', 'over limit');
+                }
+            }
+        }
+    </script>
+    
+    </apex:outputPanel>
+</apex:page>

@@ -1,0 +1,6 @@
+<apex:page standardController="Case" extensions="CaseReOpen" action="{!reOpenCase}">
+<apex:form >
+<apex:pageMessages />
+<apex:commandButton value="Ok" action="{!cancel}"/>
+</apex:form>
+</apex:page>

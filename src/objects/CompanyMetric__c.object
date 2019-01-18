@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AdminCMRatio__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;1&quot; + &quot;:&quot; + TEXT(ROUND(CMRatioAdmin__c,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SRS / CM Ratio</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdminCasesRatio__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;1&quot; + &quot;:&quot; + TEXT(ROUND(CasesRatioAdmin__c,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SRS / Cases Ratio</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdminReportsRatio__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;1&quot;  + &quot;:&quot; + TEXT(ROUND(ReportsRatioAdmin__c,2))</formula>
+        <label>SRS / Reports Ratio</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdminStaff__c</fullName>
+        <externalId>false</externalId>
+        <label>SRS Staff</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CMQARatio__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;1&quot; + &quot;:&quot; + TEXT(ROUND(CMRatioQA__c,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>QA / CM Ratio</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CMRatioAdmin__c</fullName>
+        <externalId>false</externalId>
+        <formula>CaseManagers__c / AdminStaff__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CM Ratio (Admin)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CMRatioQA__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+QAStaff__c &lt;&gt; 0,
+CaseManagers__c / QAStaff__c,
+0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CM Ratio (QA)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CaseManagers__c</fullName>
+        <externalId>false</externalId>
+        <label>Case Managers</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CasesClosed__c</fullName>
+        <externalId>false</externalId>
+        <label>Cases (Closed)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CasesOpen__c</fullName>
+        <externalId>false</externalId>
+        <label>Cases (Open)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CasesRatioAdmin__c</fullName>
+        <externalId>false</externalId>
+        <formula>TotalOpenCases__c/AdminStaff__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cases Ratio (Admin)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CasesRatioQA__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+QAStaff__c &lt;&gt; 0,
+TotalOpenCases__c/QAStaff__c,
+0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cases Ratio (QA)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CasesReOpened__c</fullName>
+        <externalId>false</externalId>
+        <label>Cases (Re-Opened)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ExternalId__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>Holds month/year as the external key</description>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>10</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>MonthEnding__c</fullName>
+        <externalId>false</externalId>
+        <label>Month Ending</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>QACasesRatio__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;1&quot;  + &quot;:&quot; + TEXT(ROUND(CasesRatioQA__c,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>QA / Cases Ratio</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QAReportsRatio__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;1&quot; + &quot;:&quot; + TEXT(ROUND(ReportsRatioQA__c,2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>QA / Reports Ratio</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QAStaff__c</fullName>
+        <description>Number of Active QA Staff.</description>
+        <externalId>false</externalId>
+        <label>QA Staff</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReportsApproved__c</fullName>
+        <externalId>false</externalId>
+        <label>Reports (Approved)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReportsCompleted__c</fullName>
+        <externalId>false</externalId>
+        <label>Reports (Completed)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReportsInProcess__c</fullName>
+        <externalId>false</externalId>
+        <label>Reports (In Process)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReportsRatioAdmin__c</fullName>
+        <externalId>false</externalId>
+        <formula>TotalReports__c/AdminStaff__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reports Ratio (Admin)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReportsRatioQA__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+QAStaff__c &lt;&gt; 0,
+TotalReports__c/QAStaff__c,
+0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reports Ratio (QA)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReportsSubmitted__c</fullName>
+        <externalId>false</externalId>
+        <label>Reports (Submitted)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TotalOpenCases__c</fullName>
+        <externalId>false</externalId>
+        <formula>CasesOpen__c + CasesReOpened__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Open Cases</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TotalReports__c</fullName>
+        <externalId>false</externalId>
+        <formula>ReportsSubmitted__c + ReportsApproved__c + ReportsCompleted__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This total includes Submitted, Approved and Completed Reports.  (Excluding In Process)</inlineHelpText>
+        <label>Total Reports</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Company Metric</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>MonthEnding__c</columns>
+        <columns>AdminStaff__c</columns>
+        <columns>CaseManagers__c</columns>
+        <columns>QAStaff__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Report_Numbers</fullName>
+        <columns>MonthEnding__c</columns>
+        <columns>ReportsCompleted__c</columns>
+        <columns>ReportsInProcess__c</columns>
+        <columns>ReportsSubmitted__c</columns>
+        <columns>ReportsApproved__c</columns>
+        <columns>TotalReports__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>Report Numbers</label>
+    </listViews>
+    <nameField>
+        <displayFormat>Metric-{0000000000}</displayFormat>
+        <label>Company Metric Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Company Metrics</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

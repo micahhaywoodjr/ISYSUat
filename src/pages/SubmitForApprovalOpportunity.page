@@ -1,0 +1,29 @@
+<apex:page standardController="Opportunity" extensions="SubmitForApprovalOpp" action="{!validateAppointments}">
+    
+    
+    <apex:form >
+        <apex:actionFunction name="validateCNE" action="{!validateCNE}"/>
+        <apex:outputText value="{!Opportunity.QBServiceItem__c}" rendered="false"/>
+
+    </apex:form>
+    <script>
+               
+        
+        if({!appointmentError}){
+            window.alert('Report cannot be submitted. One or more Appointment/Visit records require Authorization for Telephonic Follow Up');
+            window.location.href = '/{!Opportunity.Id}';
+        }
+        else if({!hasErrors}){
+            validateCNE();
+            
+        }
+        else{
+            if(confirm('Once you submit this record for approval, you might not be able to edit it or recall it from the approval process depending on your settings. Continue?')){
+                validateCNE();
+                
+            }
+            else
+                window.location.href = '/{!Opportunity.Id}';
+        }
+    </script>
+</apex:page>

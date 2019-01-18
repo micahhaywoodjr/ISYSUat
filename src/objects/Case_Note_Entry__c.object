@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AccountID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Report__r.AccountId</formula>
+        <label>Account ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <formula>Report__r.Account.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Activity_Date__c</fullName>
+        <description>Activity Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Date activity took place</inlineHelpText>
+        <label>Activity Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Adj_Expenses__c</fullName>
+        <description>Adj. Expenses</description>
+        <externalId>false</externalId>
+        <label>Adj. Expenses</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Adj_Mileage__c</fullName>
+        <description>Adj. Mileage</description>
+        <externalId>false</externalId>
+        <label>Adj. Mileage</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Adj_Professional_Hours__c</fullName>
+        <description>Adj. Professional Hours</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Audit: Invoice Time to QB</inlineHelpText>
+        <label>Adj. Professional Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Adj_Travel_Wait_Hours__c</fullName>
+        <description>Adj. Travel/Wait Hours</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Audit:  Invoice Non-Professional Time to QB</inlineHelpText>
+        <label>Adj. Travel/Wait Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Area__c</fullName>
+        <externalId>false</externalId>
+        <formula>Report__r.Related_Case__r.Assignment_Region__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Billing_Code__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Billing Code</description>
+        <externalId>false</externalId>
+        <label>Billing Code</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>INACTIVE AS OF STAFF MEETING (8/6/11)</errorMessage>
+            <filterItems>
+                <field>Billing_Code__c.Active__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Billing_Code__c</referenceTo>
+        <relationshipLabel>Case Note Entries</relationshipLabel>
+        <relationshipName>Case_Note_Entries</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CaseManager__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedBy.FirstName + &quot; &quot; + CreatedBy.LastName</formula>
+        <label>Case Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Covering_Nurse__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Covering Nurse</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CreatedDateCode__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CreatedDateCode</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Created_By_Profile__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedBy.Profile.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Created By Profile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Driving_From_City__c</fullName>
+        <description>Driving From (City)</description>
+        <externalId>false</externalId>
+        <label>Driving From (City)</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Driving_To_City__c</fullName>
+        <description>Driving To (City)</description>
+        <externalId>false</externalId>
+        <label>Driving To (City)</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Expenses_Nurse__c</fullName>
+        <externalId>false</externalId>
+        <label>Expenses (Nurse)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Expenses__c</fullName>
+        <description>Expenses</description>
+        <externalId>false</externalId>
+        <label>Expenses</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Final_Expenses__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adj_Expenses__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final Expenses</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Final_Mileage__c</fullName>
+        <externalId>false</externalId>
+        <formula>if (Adj_Mileage__c != 0, Adj_Mileage__c, Mileage__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final Mileage</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Professional_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>if (  Adj_Professional_Hours__c = 0,  Professional_Hours__c  , Adj_Professional_Hours__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final Professional Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Travel_Wait_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>if (  Adj_Travel_Wait_Hours__c  != 0, Adj_Travel_Wait_Hours__c, Travel_Wait_Hours__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final Travel/Wait Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hour_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Professional_Total__c +  Travel_Wait_Total__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Hour Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MileageRate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+Rush__c = TRUE,
+Report__r.Rush_Mileage_Rate__c,
+Report__r.Mileage_Rate__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mileage Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MileageTotalA__c</fullName>
+        <externalId>false</externalId>
+        <formula>Mileage__c * MileageRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mileage Total (A)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MileageTotalB__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adj_Mileage__c * MileageRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mileage Total (B)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MileageTotalNurse__c</fullName>
+        <externalId>false</externalId>
+        <formula>Mileage_Nurse__c * MileageRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mileage Total (Nurse)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Mileage_Nurse__c</fullName>
+        <externalId>false</externalId>
+        <label>Mileage (Nurse)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mileage_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Final_Mileage__c * IF( Rush__c ,Report__r.Account.Rush_Mileage_Rate__c , Report__r.Account.Mileage_Rate__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mileage Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Mileage__c</fullName>
+        <description>Mileage</description>
+        <externalId>false</externalId>
+        <label>Mileage</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NonProfessionalRate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+Rush__c = TRUE,
+Report__r.Rush_Travel_Wait_Rate__c,
+Report__r.Travel_Wait_Rate__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Non-Professional Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NonProfessionalTotalA__c</fullName>
+        <externalId>false</externalId>
+        <formula>Travel_Wait_Hours__c * NonProfessionalRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Non-Professional Total (A)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NonProfessionalTotalB__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adj_Travel_Wait_Hours__c * NonProfessionalRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Non-Professional Total (B)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NonProfessionalTotalNurse__c</fullName>
+        <externalId>false</externalId>
+        <formula>Travel_Wait_Hours_Nurse__c * NonProfessionalRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Non-Professional Total (Nurse)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NurseEntry__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Covering_Nurse__c  = TRUE  ||  Primary_Nurse__c = TRUE,
+&apos;Yes&apos;,
+&apos;No&apos;)</formula>
+        <label>Nurse Entry?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PrevBillingCode__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PrevBillingCode</label>
+        <referenceTo>Billing_Code__c</referenceTo>
+        <relationshipLabel>Case Note Entries (PrevBillingCode)</relationshipLabel>
+        <relationshipName>Case_Note_Entries1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Nurse__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Primary Nurse</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ProfessionalHoursRate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+Rush__c = TRUE,
+Report__r.Rush_Professional_Rate__c,
+Report__r.Professional_Rate__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Professional Hours Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ProfessionalTotalA__c</fullName>
+        <externalId>false</externalId>
+        <formula>Professional_Hours__c * ProfessionalHoursRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Professional Total (A)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ProfessionalTotalB__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adj_Professional_Hours__c * ProfessionalHoursRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Professional Total (B)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ProfessionalTotalNurse__c</fullName>
+        <externalId>false</externalId>
+        <formula>Professional_Hours_Nurse__c * ProfessionalHoursRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Professional Total (Nurse)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Professional_Hours_Nurse__c</fullName>
+        <externalId>false</externalId>
+        <label>Professional Hours (Nurse)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Professional_Hours__c</fullName>
+        <description>Professional Hours</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Edit : Nurse Professional Time to QB</inlineHelpText>
+        <label>Professional Units</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Professional_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Final_Professional_Hours__c * If(  Rush__c ,  Report__r.Account.Rush_Professional_Rate__c  , Report__r.Account.Professional_Rate__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Professional Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Rate_Calculation__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Report__r.Amount_Locked__c ,
+	Rate_Value__c,
+	IF(Total_Hours__c &gt; 0,
+		(Total_Cost__c/Total_Hours__c),
+		IF (Final_Mileage__c &gt; 0,
+			Mileage_Total__c,
+			Final_Expenses__c
+		)
+	)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Rate Calculation</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Rate_Locked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Rate Locked</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Rate_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Rate Value</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>RelatedAttachments__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Attachments</label>
+        <length>5000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RelatedCommunicationHistories__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Communication Histories</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RelatedCommunicationHistorySubject__c</fullName>
+        <externalId>false</externalId>
+        <label>RelatedCommunicationHistorySubject</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Report_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Report__r.StageName , 
+&quot;In Process&quot;, &quot;In Process&quot;,
+&quot;Submitted&quot;, &quot;Submitted&quot;,
+&quot;Approved&quot;, &quot;Approved&quot;,
+&quot;Completed&quot;, &quot;Completed&quot;,&quot;&quot; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Report Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Report__c</fullName>
+        <description>Report</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Case Report that Entry is related to</inlineHelpText>
+        <label>Report</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Case Note Entries</relationshipLabel>
+        <relationshipName>Case_Note_Entries</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Rush__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Rush / Catastrophic / Weekend / Ergo</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Rush / Catastrophic / Weekend / Ergo</inlineHelpText>
+        <label>Special Services Rate</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TotalHoursA__c</fullName>
+        <externalId>false</externalId>
+        <formula>Professional_Hours__c + Travel_Wait_Hours__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Hours (A)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TotalHoursB__c</fullName>
+        <externalId>false</externalId>
+        <formula>Adj_Professional_Hours__c + Adj_Travel_Wait_Hours__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Hours (B)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TotalHoursNurse__c</fullName>
+        <externalId>false</externalId>
+        <formula>Professional_Hours_Nurse__c + Travel_Wait_Hours_Nurse__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Hours (Nurse)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Professional_Total__c +  Travel_Wait_Total__c +  Mileage_Total__c + Final_Expenses__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>Final_Professional_Hours__c +  Final_Travel_Wait_Hours__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Travel_Wait_Hours_Nurse__c</fullName>
+        <externalId>false</externalId>
+        <label>Travel/Wait Hours (Nurse)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Travel_Wait_Hours__c</fullName>
+        <description>Travel/Wait Hours</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Edit:  Nurse Non-Professional Time to QB</inlineHelpText>
+        <label>Travel/Wait Units</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Travel_Wait_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Final_Travel_Wait_Hours__c *  If(  Rush__c ,  Report__r.Account.Rush_Travel_Wait_Rate__c   , Report__r.Account.Travel_Wait_Rate__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Travel/Wait Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Work_Description__c</fullName>
+        <description>Work Description</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of work being performed or recorded</inlineHelpText>
+        <label>Work Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Case Note Entry</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Covering_Nurse__c</columns>
+        <columns>Primary_Nurse__c</columns>
+        <columns>NurseEntry__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Case_Note_Entries_for_Review</fullName>
+        <columns>Report__c</columns>
+        <columns>Report_Status__c</columns>
+        <columns>NAME</columns>
+        <columns>Billing_Code__c</columns>
+        <columns>Professional_Hours_Nurse__c</columns>
+        <columns>Professional_Hours__c</columns>
+        <columns>Adj_Professional_Hours__c</columns>
+        <columns>Travel_Wait_Hours_Nurse__c</columns>
+        <columns>Travel_Wait_Hours__c</columns>
+        <columns>Adj_Travel_Wait_Hours__c</columns>
+        <columns>Mileage_Nurse__c</columns>
+        <columns>Mileage__c</columns>
+        <columns>Adj_Mileage__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Report_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Completed</value>
+        </filters>
+        <label>Case Note Entries for Review</label>
+    </listViews>
+    <nameField>
+        <displayFormat>Bill-{00000}</displayFormat>
+        <label>Case Note Entry Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Case Note Entries</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Report__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Report_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_ACTIVITY</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Case_Note_00</fullName>
+        <active>false</active>
+        <description>Throws an error if the case note is a 00 - needs to be changed to a valid case note</description>
+        <errorConditionFormula>Billing_Code__r.Name  = &quot;00-To Be Updated by CM&quot;</errorConditionFormula>
+        <errorMessage>Please update all Activity Codes, 00-Case Manager to update must be changed to a valid Activity Code</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Date_Restriction</fullName>
+        <active>true</active>
+        <description>Activity Date must be inside From and Through Date</description>
+        <errorConditionFormula>OR(
+(Activity_Date__c &gt;  Report__r.Service_Date_Thru__c),
+(Activity_Date__c &lt;  Report__r.Service_Date_From__c)
+)</errorConditionFormula>
+        <errorDisplayField>Activity_Date__c</errorDisplayField>
+        <errorMessage>Activity date must be within the Service Date Thru and Service Date From on the related Case Report.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>DisallowNONProfNULLValues</fullName>
+        <active>true</active>
+        <description>Nurse Prof or non-prof can&apos;t be null, based off the billing code applied.</description>
+        <errorConditionFormula>(LEFT(Billing_Code__r.Name, 1) = &quot;T&quot; ||
+LEFT(Billing_Code__r.Name, 1) = &quot;W&quot;) &amp;&amp;
+ISBLANK(Travel_Wait_Hours_Nurse__c)</errorConditionFormula>
+        <errorDisplayField>Travel_Wait_Hours_Nurse__c</errorDisplayField>
+        <errorMessage>Non-Professional Units cannot be NULL, please enter a value.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>DisallowProfNULLValues</fullName>
+        <active>true</active>
+        <description>Nurse Prof or non-prof can&apos;t be null, based off the billing code applied.</description>
+        <errorConditionFormula>(LEFT(Billing_Code__r.Name, 1) &lt;&gt; &quot;T&quot; &amp;&amp;
+LEFT(Billing_Code__r.Name, 1) &lt;&gt; &quot;W&quot;) &amp;&amp;
+ISBLANK(Professional_Hours_Nurse__c)</errorConditionFormula>
+        <errorDisplayField>Professional_Hours_Nurse__c</errorDisplayField>
+        <errorMessage>Professional Units cannot be NULL, please enter a value.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Exceed_Allowable_Limits_Professional</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+ISPICKVAL(Report__r.StageName,&quot;In Process&quot;),
+(Professional_Hours__c &gt;  Billing_Code__r.Max__c),
+(Professional_Hours__c &lt;  Billing_Code__r.Min__c)
+)</errorConditionFormula>
+        <errorDisplayField>Professional_Hours__c</errorDisplayField>
+        <errorMessage>Professional units exceed the allowable guideline.  Please adjust.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>MaxAllowableLimitsProfNurse</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+ISPICKVAL(Report__r.StageName,&quot;In Process&quot;),
+Professional_Hours_Nurse__c &gt; Billing_Code__r.Max__c,
+(LEFT( Billing_Code__r.Name, 1) &lt;&gt; &quot;T&quot;),
+(LEFT(Billing_Code__r.Name, 1) &lt;&gt; &quot;W&quot;))</errorConditionFormula>
+        <errorDisplayField>Professional_Hours_Nurse__c</errorDisplayField>
+        <errorMessage>Professional units exceed the Maximum allowable guideline. Please adjust.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>MaxAllowableLimitsTravelWait</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+Travel_Wait_Hours_Nurse__c &gt; Billing_Code__r.Max__c,
+OR(
+(LEFT( Billing_Code__r.Name, 1) = &quot;T&quot;),
+(LEFT(Billing_Code__r.Name, 1) = &quot;W&quot;)))</errorConditionFormula>
+        <errorDisplayField>Travel_Wait_Hours_Nurse__c</errorDisplayField>
+        <errorMessage>Travel/Wait units (Nurse) units exceed the Maximum allowable guideline. Please adjust.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>MinAllowableLimitsProfNurse</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+Professional_Hours_Nurse__c &lt; Billing_Code__r.Min__c, 
+LEFT( Billing_Code__r.Name, 1) &lt;&gt; &quot;T&quot;, 
+LEFT(Billing_Code__r.Name, 1) &lt;&gt; &quot;W&quot;)</errorConditionFormula>
+        <errorDisplayField>Professional_Hours_Nurse__c</errorDisplayField>
+        <errorMessage>Professional units do not meet the Minimum allowable time entry.  Please adjust.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>MinAllowableLimitsTravelWait</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+Travel_Wait_Hours_Nurse__c   &lt;  Billing_Code__r.Min__c,
+OR(
+(LEFT(Billing_Code__r.Name, 1) = &quot;T&quot;), 
+(LEFT(Billing_Code__r.Name, 1) = &quot;W&quot;)))</errorConditionFormula>
+        <errorDisplayField>Travel_Wait_Hours_Nurse__c</errorDisplayField>
+        <errorMessage>Travel/Wait Units (Nurse) units do not meet the Minimum allowable guideline.  Please adjust.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_Change_After_Approval</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+( Report__r.A_Notes_Approved__c =True),
+OR(
+ ISCHANGED(Professional_Hours__c ),
+ ISCHANGED(Travel_Wait_Hours__c ),
+ISCHANGED(Mileage__c )
+)
+)</errorConditionFormula>
+        <errorMessage>Case Notes have been submitted and Approved.  The Case Notes can not be modified.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Professional_Code_with_Wait_Hours</fullName>
+        <active>true</active>
+        <description>Throws an error if the Travel / Wait time is filled in</description>
+        <errorConditionFormula>AND(
+(LEFT( Billing_Code__r.Name, 1)  &lt;&gt;  &quot;W&quot;),
+(LEFT( Billing_Code__r.Name, 1)  &lt;&gt;  &quot;T&quot;),
+OR(
+(Travel_Wait_Hours_Nurse__c &gt; 0.0),
+(Travel_Wait_Hours_Nurse__c = 0.0),
+(Mileage_Nurse__c = 0.0),
+(Mileage_Nurse__c &gt; 0.0), 
+(Driving_To_City__c &lt;&gt; null),
+(Driving_From_City__c &lt;&gt; null)))</errorConditionFormula>
+        <errorMessage>When using a Professional Activity Code, you must ONLY enter units in the Professional Units field.  Please remove any data in the Travel/Wait, Mileage, To (City) and/or From (City).</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TravelCodeWithProfessionalHours</fullName>
+        <active>true</active>
+        <description>Throws an error if the Professional time is filled in</description>
+        <errorConditionFormula>AND(
+Professional_Hours_Nurse__c &gt;0.0,
+OR(
+(LEFT( Billing_Code__r.Name, 1) = &quot;T&quot;),
+(LEFT(Billing_Code__r.Name, 1) = &quot;W&quot;)))</errorConditionFormula>
+        <errorDisplayField>Billing_Code__c</errorDisplayField>
+        <errorMessage>When using a Travel / Wait Activity Code, you must ONLY enter units in the Travel/Wait Units field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>TravelRequireHoursMileageCity</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+(LEFT(Billing_Code__r.Name, 1) = &quot;T&quot;),
+OR(
+(Driving_To_City__c = null),
+(Driving_From_City__c = null)))</errorConditionFormula>
+        <errorMessage>Activity Code is Travel, please verify that Travel/Wait Units (Nurse), From (City) and/or To (City) have been populated before saving.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Travel_Code_with_Professional_Hours</fullName>
+        <active>true</active>
+        <description>Throws an error if the Professional time is filled in</description>
+        <errorConditionFormula>AND(
+(LEFT( Billing_Code__r.Name, 1) = &quot;T&quot;),
+AND(
+( Professional_Hours_Nurse__c &gt;0.0)
+))</errorConditionFormula>
+        <errorMessage>When using a Travel / Wait Activity Code, you must ONLY enter units in the Travel/Wait Units field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Travel_Hours_Mileage_and_ToFrom_Req</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+(LEFT(Billing_Code__r.Name, 1) = &quot;T&quot;),
+OR(
+(ISBLANK(Travel_Wait_Hours_Nurse__c)),
+(ISBLANK(Driving_To_City__c)),
+(ISBLANK(Driving_From_City__c))))</errorConditionFormula>
+        <errorMessage>Activity Code is Travel, please verify that Travel/Wait Units (Nurse), From (City) and/or To (City) have been populated before saving.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>WaitCodeNoMileageCity</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+(LEFT(Billing_Code__r.Name, 1) = &quot;W&quot;),
+OR(
+(Mileage_Nurse__c  &gt; 0.0),
+(Driving_To_City__c &lt;&gt; null),
+(Driving_From_City__c &lt;&gt; null)))</errorConditionFormula>
+        <errorMessage>Activity Code is Wait, please verify that Mileage (Nurse), From (City) and/or To (City) are NOT populated before saving.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Wait_Code_with_Professional_Hours</fullName>
+        <active>true</active>
+        <description>Throws an error if the Professional time is filled in</description>
+        <errorConditionFormula>AND(
+(LEFT( Billing_Code__r.Name, 1) = &quot;W&quot;),
+AND(
+( Professional_Hours_Nurse__c &gt;0.0)
+))</errorConditionFormula>
+        <errorMessage>When using a Travel / Wait Activity Code, you must ONLY enter units in the Travel/Wait Units field.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Add_Case_Notes</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Add Case Notes</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/bulkNoteAdd?id={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Audit_Case_Notes</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Audit Case Notes</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/bulkNoteAdd?id={!Opportunity.Id}&amp;edit=1&amp;audit=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Edit_All_Case_Notes</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Edit All Case Notes</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/bulkNoteAdd?id={!Opportunity.Id}&amp;edit=1</url>
+    </webLinks>
+</CustomObject>

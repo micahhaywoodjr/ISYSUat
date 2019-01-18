@@ -1,0 +1,322 @@
+<apex:page controller="viewCaseNoteEntries" tabStyle="Case_Note_Entry__c">
+<style type="text/css">
+    .disabled-text {color:#ccc;}
+</style>
+<script>
+var strAllSelectRec = '';
+function doubleConfirm(){
+    var iRecCount = 0;
+    var bConfirm = false;
+    if(strAllSelectRec!=null && strAllSelectRec!='')
+    {
+        var strChkSelectRec = strAllSelectRec.split(',');
+        for(var i=0; i < strChkSelectRec.length; i++)
+        {
+            if(document.getElementById(strChkSelectRec[i])!=null)
+            {
+                if(document.getElementById(strChkSelectRec[i]).checked)
+                    iRecCount++;
+            }
+        }
+        if(confirm("Do you want to delete "+iRecCount+" selected Records?"))
+        {
+            if(confirm("Are you sure, you want to delete "+iRecCount+" selected Records?"))
+                bConfirm = true;
+        }
+    }
+    return bConfirm;
+}
+function cancelConfirm()
+{
+    var bCancelConfirm = false;
+    if(confirm("Are you sure you want to Cancel?"))
+        bCancelConfirm = true;
+    return bCancelConfirm;
+}
+var AllCheckBoxIds = "";
+var chkId = "";
+function SelectAll()
+{
+    var strIds;
+    if(AllCheckBoxIds!="")
+    {
+        strIds = AllCheckBoxIds.split(",");
+        for(var i = 0 ; i < strIds.length ; i++)
+            document.getElementById(strIds[i]).checked = document.getElementById(chkId).checked;
+    }
+}
+</script>
+<apex:pageMessages />
+<apex:form id="all">
+    <apex:Messages />
+    <apex:pageBlock title="Case Note Entry" id="lstCaseNoteEntry">
+    <apex:pageBlockSection title="Actions" columns="1" showHeader="false">
+        <apex:pageBlockSectionItem >
+            <apex:outputPanel id="sortBut">
+                <table width="100%">
+                    <tr>
+                        <td valign="Bottom" align="left">
+                        <apex:selectList id="ddlAddRec" value="{!iRecordAdd}" size="1" rendered="{!bOppUnLock}">
+                            <apex:selectOption itemValue="1" itemLabel="1 Record"/>
+                            <apex:selectOption itemValue="5" itemLabel="5 Records"/>
+                            <!-- <apex:selectOption itemValue="10" itemLabel="10 Records"/> -->
+          </apex:selectList>&nbsp;
+                        <apex:commandButton value="Add" action="{!AddSelected}" rendered="{!bOppUnLock}"/>&nbsp;&nbsp;&nbsp;
+                        <apex:commandButton value="Edit Selected" action="{!editSelected}" rendered="{!bOppUnLock}"/>&nbsp;&nbsp;
+
+                        <apex:commandButton value="View Selected" action="{!viewSelectedCNE}" reRender="lstCaseNoteEntry,tableCNE" rendered="{!bFirstView}"/>&nbsp;&nbsp;
+                        <apex:commandButton value="View All" action="{!viewAllCNE}" reRender="lstCaseNoteEntry" rendered="{!bFirstView}"/>&nbsp;&nbsp;
+                        <apex:commandButton value="Delete Selected" onClick="return doubleConfirm();" action="{!deleteSelected}" rendered="{!bOppUnLock}"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- <apex:commandButton value="Edit All" action="{!editAllCNE}" rendered="{!bOppUnLock}"/>&nbsp;&nbsp; -->
+                        <apex:outputPanel rendered="{!AND(Not(ReturnTrueIfNurse),bRequiresApproval)}">
+                          <!-- <apex:commandButton value="Approve" action="{!Approve}"/>&nbsp;&nbsp;&nbsp;&nbsp;<!-- AND(bOpportunitySubmitted, -->
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!bRequiresApproval}">
+                            <apex:commandButton value="Approve/Reject" action="{!ApproveReject}"/>
+                        </apex:outputPanel>
+                        <apex:commandButton value="Back To Summary" action="{!BackToSummary}" reRender="lstCaseNoteEntry" rendered="{!NOT(bFirstView)}"/>
+                        <apex:commandButton value="Reassign Selected" action="{!reAssignOpportunity}"/>
+                        </td>
+                    </tr>
+                </table>
+                <apex:outputPanel rendered="{!bFirstView}">
+                <table width="100%"><tr>
+                       <td class="pbSubheader tertiaryPalette" colspan="6" style="background-color: #99CCCC">
+                        <apex:outputPanel rendered="{!RocordsFound}">
+                            <h2>Case Report:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objWrapCNE.objCNE.Report__r.Id}"><font color="#000000">{!objWrapCNE.objCNE.Report__r.Name}</font></a></h3>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Account:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objWrapCNE.objCNE.Report__r.AccountId}"><font color="#000000">{!objWrapCNE.objCNE.Report__r.Account.Name}</font></a></h3>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Related Case:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objWrapCNE.objCNE.Report__r.Related_Case__c}"><font color="#000000">{!objWrapCNE.objCNE.Report__r.Related_Case__r.CaseNumber}</font></a></h3>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Service Dates:</h2>&nbsp;&nbsp;&nbsp;<h3><font color="#000000"><apex:outputText value="{!objWrapCNE.objCNE.Report__r.Service_Date_From__c}-{!objWrapCNE.objCNE.Report__r.Service_Date_Thru__c}"/></font></h3>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!NOT(RocordsFound)}">
+                            <h2>Case Report:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objOpportunity.Id}"><font color="#000000">{!objOpportunity.Name}</font></a></h3>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Account:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objOpportunity.AccountId}"><font color="#000000">{!objOpportunity.Account.Name}</font></a></h3>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Related Case:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objOpportunity.Related_Case__c}"><font color="#000000">{!objOpportunity.Related_Case__r.CaseNumber}</font></a></h3>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Service Dates:</h2>&nbsp;&nbsp;&nbsp;<h3><font color="#000000"><apex:outputText value="{!objOpportunity.Service_Date_From__c}-{!objOpportunity.Service_Date_Thru__c}"/></font></h3>
+                        </apex:outputPanel>
+                        </td>
+                </tr></table></apex:outputPanel>
+              </apex:outputPanel>
+        </apex:pageBlockSectionItem>
+   </apex:pageBlockSection>
+       <apex:pageBlockButtons >
+           <td valign="Top" >
+            <apex:outputPanel id="showButton">
+                <!-- <apex:outputLabel rendered="{!bFirstView}" id="lblText" value="Search Case Note"/>&nbsp;
+                <apex:inputField id="theInputText" value="{!oCNE.Activity_Date__c}" rendered="{!bFirstView}"/>
+                <apex:commandButton value="Go" action="{!FindCaseNoteEntry}" reRender="tableCNEView" rendered="{!bFirstView}"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<apex:commandButton value="Cancel" action="{!Cancel}" onClick="return cancelConfirm();"/>-->
+            </apex:outputPanel>
+            </td>
+            <!-- <td align="Right">
+                <apex:outputPanel id="sortShow" rendered="{!bFirstView}"><apex:outputLabel value="Sort by"/>&nbsp;
+                   <apex:selectList id="ddlSortBy" value="{!strSortBy}" size="1">
+                       <apex:actionSupport event="onchange" action="{!renderSorted}" rerender="tableCNEView"/>
+                       <apex:selectOption itemValue="Created By" itemLabel="Created By"/>
+                       <apex:selectOption itemValue="Activity Date" itemLabel="Activity Date"/>
+                   </apex:selectList>
+                </apex:outputPanel>
+            </td> -->
+       </apex:pageBlockButtons>
+       <apex:outputPanel id="toReferesh" rendered="{!NOT(bFirstView)}">
+       <script>strAllSelectRec = ''</script>
+       <table width="100%" cellspacing="0" cellPadding="2">
+       <apex:repeat value="{!lstWrapCNE}" var="item" id="tableCNE">
+            <tr>
+                <td class="pbSubheader tertiaryPalette" colspan="9" style="background-color: #99CCCC">
+                    <apex:inputCheckbox value="{!item.bShowCheckValue}" rendered="{!item.bShowCheck && item.bEditCheck}" id="chkSelectRec"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <script>
+                        if(strAllSelectRec=='')
+                            strAllSelectRec += '{!$Component.chkSelectRec}';
+                        else
+                            strAllSelectRec += ',{!$Component.chkSelectRec}';
+                    </script>
+                    <h2>Case Report:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!item.objCNE.Report__r.Id}"><font color="#000000">{!item.objCNE.Report__r.Name}</font></a></h3>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Account:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!item.objCNE.Report__r.AccountId}"><font color="#000000">{!item.objCNE.Report__r.Account.Name}</font></a></h3>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Related Case:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!item.objCNE.Report__r.Related_Case__c}"><font color="#000000">{!item.objCNE.Report__r.Related_Case__r.CaseNumber}</font></a></h3>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Service Dates:</h2>&nbsp;&nbsp;&nbsp;<h3><font color="#000000"><apex:outputText value="{!item.objCNE.Report__r.Service_Date_From__c}-{!item.objCNE.Report__r.Service_Date_Thru__c}"/></font></h3>
+                </td>
+            </tr>
+            <tr>
+            <th style="border-top: 1px solid grey;border-left: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Activity Date</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Activity Code</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Prof Units (CM)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">T/W Units (CM)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Prof Units (A)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">T/W Units (A)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Prof Units (B)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">T/W Units (B)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Created By</th>
+            </tr>
+            <tr>
+                <td style="border-bottom: 1px solid grey;border-left: 1px solid grey;;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Activity_Date__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Billing_Code__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Professional_Hours_Nurse__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Travel_Wait_Hours_Nurse__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Professional_Hours__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Travel_Wait_Hours__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Adj_Professional_Hours__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Adj_Travel_Wait_Hours__c}"/></td>
+
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:outputField value="{!item.objCNE.CreatedBy.Name}"/></td>
+            </tr>
+            <tr>
+               <th style="border-right: 1px solid grey;border-bottom: 1px solid grey;border-left: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;">
+                            <apex:outputLabel style="float:left;" value="{!item.billingMin}"/>
+                            <apex:outputLabel style="float:right;" value="{!item.AdminBillingMin}" rendered="{!isAdmin}"/>
+               </td>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Mileage (CM)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Exp (CM)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Mileage (A)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Exp (A)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Mileage (B)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Exp (B)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+            </tr>
+            <tr>
+               <th style="border-right: 1px solid grey;border-bottom: 1px solid grey;border-left: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;">
+                            <apex:outputLabel style="float:left;" value="{!item.billingMax}"/>
+                            <apex:outputLabel style="float:right;" value="{!item.AdminBillingMax}" rendered="{!isAdmin}"/>
+               </td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Mileage_Nurse__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Expenses_Nurse__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Mileage__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Expenses__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Adj_Mileage__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Adj_Expenses__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+            </tr>
+            <tr>
+               <th style="border-left: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" colspan="2" class="headerRow">Case Note Description</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">From (City)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">To (City)</th>
+               <td style="border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+            </tr>
+            <tr>
+               <td colspan="2" width="30%" style="border-bottom: 1px solid grey;border-left: 1px solid grey;border-right: 1px solid grey;">{!item.objCNE.Work_Description__c}</td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Driving_From_City__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;"><apex:outputField value="{!item.objCNE.Driving_To_City__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+            </tr>
+            <tr>
+                <th style="border-left: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" colspan="3" class="headerRow">Related Communication History</th>
+                <th colspan="6" style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Related Attachments</th>
+            </tr>
+            <tr>
+                <td colspan="3" width="30%" style="border-bottom: 1px solid grey;border-left: 1px solid grey;border-right: 1px solid grey;">
+                <apex:outputPanel id="relatedComm">
+                    <apex:repeat value="{!item.allCommunications}" var="al" >
+                        <apex:outputLink value="/{!al.attId}" target="_blank"> {!al.attName} </apex:outputLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </apex:repeat>
+                </apex:outputPanel>
+                </td>
+                <td colspan="6" style="border-bottom: 1px solid grey;border-right: 1px solid grey;">
+                    <apex:repeat value="{!item.attachmentLinks}" var="al">
+                        <apex:outputLink value="{!al}" target="_blank">{!item.attachmentLinks[al]}</apex:outputLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </apex:repeat>
+               </td>
+            </tr>
+            <tr><td colspan="9"></td></tr>
+       </apex:repeat>
+       </table>
+       </apex:outputPanel>
+       <apex:outputPanel id="pnlGridData" rendered="{!bFirstView}">
+           <script>strAllSelectRec = ''</script>
+           <apex:pageBlockTable value="{!lstWrapCNE}" var="item" id="tableCNEView">
+               <apex:column width="14px">
+                   <apex:facet name="header">
+                    <apex:inputCheckbox id="chkAll" onClick="SelectAll();"><Script>chkId = "{!$Component.chkAll}";</Script></apex:inputCheckbox>
+                   </apex:facet>
+                   <apex:inputCheckbox id="chkSelect" value="{!item.bShowCheckValue}" rendered="{!item.bShowCheck && item.bEditCheck}"/>
+                   <Script>
+                    if(AllCheckBoxIds!="")
+                        AllCheckBoxIds += ",{!$Component.chkSelect}"
+                    else
+                        AllCheckBoxIds = "{!$Component.chkSelect}";
+                    if(strAllSelectRec=='')
+                        strAllSelectRec += '{!$Component.chkSelect}';
+                    else
+                        strAllSelectRec += ',{!$Component.chkSelect}';
+                   </Script>
+               </apex:column>
+               <apex:column style="border-right: 1px solid grey;border-left: 1px solid grey;">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!renderSorted}" value="Activity Date{!IF(sortExpression='Activity_Date__c',IF(sortDirection='ASC','?','?'),'')}" id="cmdSort">
+                           <apex:param value="Activity_Date__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:outputLabel value="{!MONTH(item.objCNE.Activity_Date__c)}/{!DAY(item.objCNE.Activity_Date__c)}/{!YEAR(item.objCNE.Activity_Date__c)}"/>
+               </apex:column>
+               <apex:column headerValue="Activity Code" value="{!item.objCNE.Billing_Code__c}" style="border-right: 1px solid grey;"/>
+               <apex:column headerValue="Prof Units (CM)" value="{!item.objCNE.Professional_Hours_Nurse__c}" style="border-right: 1px solid grey;"/><!--  (Nurse) -->
+               <apex:column headerValue="T/W Units (CM)" value="{!item.objCNE.Travel_Wait_Hours_Nurse__c}" style="border-right: 1px solid grey;"/><!--  (Nurse) -->
+               <apex:column headerValue="Mileage (CM)" value="{!item.objCNE.Mileage_Nurse__c}" style="border-right: 1px solid grey;"/><!--  (Nurse) -->
+               <apex:column headerValue="Exp (CM)" value="{!item.objCNE.Expenses_Nurse__c}" style="border-right: 1px solid grey;"/><!--  (Nurse) -->
+               <apex:column headerValue="From (City)" value="{!item.objCNE.Driving_From_City__c}" style="border-right: 1px solid grey;"/>
+               <apex:column headerValue="To (City)" value="{!item.objCNE.Driving_To_City__c}" style="border-right: 1px solid grey;"/>
+               <apex:column headerValue="Prof Units (A)" value="{!item.objCNE.Professional_Hours__c}" style="border-right: 1px solid grey;"/>
+               <apex:column headerValue="T/W Units (A)" value="{!item.objCNE.Travel_Wait_Hours__c}" style="border-right: 1px solid grey;"/>
+               <apex:column headerValue="Mileage (A)" value="{!item.objCNE.Mileage__c}" style="border-right: 1px solid grey;"/>
+               <apex:column headerValue="Prof Units (B)" value="{!item.objCNE.Adj_Professional_Hours__c}" style="border-right: 1px solid grey;"/>
+               <apex:column headerValue="T/W Units (B)" value="{!item.objCNE.Adj_Travel_Wait_Hours__c}" style="border-right: 1px solid grey;"/>
+               <apex:column headerValue="Mileage (B)" value="{!item.objCNE.Adj_Mileage__c}" style="border-right: 1px solid grey;"/>
+               <apex:column style="border-right: 1px solid grey;border-left: 1px solid grey;">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!renderSorted}" value="Created By{!IF(sortExpression='CreatedBy.Name',IF(sortDirection='ASC','?','?'),'')}" id="cmdCSort">
+                           <apex:param value="CreatedBy.Name" name="column" assignTo="{!sortExpression}" ></apex:param>
+                        </apex:commandLink>
+                    </apex:facet>
+                    <apex:outputLabel value="{!item.objCNE.CreatedBy.Name}"/>
+               </apex:column>
+                <apex:column headerValue="Has Attachments" style="border-right: 1px solid grey;">
+                                <apex:inputCheckbox value="{!item.hasAttachment}" disabled="true"/>
+              </apex:column>
+           </apex:pageBlockTable>
+       </apex:outputPanel>
+       <apex:pageBlockSection title="Actions" columns="1" showHeader="false">
+        <apex:pageBlockSectionItem >
+            <apex:outputPanel id="sortBut">
+                <table width="100%">
+                    <tr>
+                        <td valign="Bottom" align="left">
+                        <apex:selectList id="ddlAddRec" value="{!iRecordAddBot}" size="1" rendered="{!bOppUnLock}">
+                            <apex:selectOption itemValue="1" itemLabel="1 Record"/>
+                            <apex:selectOption itemValue="5" itemLabel="5 Records"/>
+                            <!-- <apex:selectOption itemValue="10" itemLabel="10 Records"/> -->
+                        </apex:selectList>&nbsp;
+                        <apex:commandButton value="Add" action="{!AddSelectedBot}" rendered="{!bOppUnLock}"/>&nbsp;&nbsp;&nbsp;
+                        <apex:commandButton value="Edit Selected" action="{!editSelected}" rendered="{!bOppUnLock}"/>&nbsp;&nbsp;
+
+                        <apex:commandButton value="View Selected" action="{!viewSelectedCNE}" reRender="lstCaseNoteEntry,tableCNE" rendered="{!bFirstView}"/>&nbsp;&nbsp;
+                        <apex:commandButton value="View All" action="{!viewAllCNE}" reRender="lstCaseNoteEntry" rendered="{!bFirstView}"/>&nbsp;&nbsp;
+                        <apex:commandButton value="Delete Selected" onClick="return doubleConfirm();" action="{!deleteSelected}" rendered="{!bOppUnLock}"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <apex:outputPanel rendered="{!bRequiresApproval}">
+                            <apex:commandButton value="Approve/Reject" action="{!ApproveReject}"/>
+                        </apex:outputPanel>
+                        <apex:commandButton value="Back To Summary" action="{!BackToSummary}" reRender="lstCaseNoteEntry" rendered="{!NOT(bFirstView)}"/>
+                        </td>
+                        <td style="float: right;">
+                            <apex:commandLink value="Next Page »" action="{!next}"  style="float: right;" rendered="{!hasNext}" reRender="all"/>
+                            <apex:outputText value="Next Page »" rendered="{!hasNext == false}" style="float: right;" styleClass="disabled-text" />
+                            <span class="page-count" style="float: right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <apex:commandLink value="« Previous Page" action="{!previous}" style="float: right;" rendered="{!hasPrevious}" reRender="all" />
+                            <apex:outputText value="« Previous Page" rendered="{!hasPrevious == false}" style="float: right;" styleClass="disabled-text" />
+                        </td>
+                    </tr>
+                </table>
+           </apex:outputPanel>
+      </apex:pageBlockSectionItem>
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

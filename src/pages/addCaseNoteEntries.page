@@ -1,0 +1,495 @@
+<apex:page controller="addCaseNoteEntries" tabStyle="Case_Note_Entry__c">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js" />
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<style type="text/css">
+        .custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            padding:10px;
+            position: fixed;
+            /* These are the 3 css properties you will need to change so the popup
+            displays in the center of the screen. First set the width. Then set
+            margin-left to negative half of what the width is. You can add
+            the height property for a fixed size pop up if you want.*/
+            width: 80%;
+            height:100%;
+            top:0%;
+            right: 8%;
+        }
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+        .odd
+        {
+            background-color: #FCF7F7;
+        }
+        .even
+        {
+            background-color: #E3DCDB;
+        }
+
+    </style>
+<script type="text/javascript">
+    function cancelConfirm()
+    {
+        var bCancelConfirm = false;
+        if(confirm("Are you sure you want to Cancel?"))
+            bCancelConfirm = true;
+        return bCancelConfirm;
+    }
+    function hideButtons(){
+        dojo.query('.btn').forEach(function(node, index, arr) { dojo.style(node, 'visibility', 'hidden'); });
+        setTimeout( showButtons, 1000000);
+
+        return true;
+    }
+
+
+    function showButtons(){
+        dojo.query('.btn').forEach(function(node, index, arr) { dojo.style(node, 'visibility', 'visible'); });
+        return true;
+    }
+
+
+    function disableButton(btn){
+        var btnDis = document.getElementById(btn);
+        if(btnDis!=null)
+        {
+            btnDis.disabled = true;
+        }
+        return true;
+    }
+    function textCounter(field,cntfield,maxlimit) {
+        var sField = document.getElementById(field);
+        var scntfield = document.getElementById(cntfield);
+        if (sField.value.length > maxlimit)
+            sField.value = sField.value.substring(0, maxlimit);
+        else
+            scntfield.value = maxlimit -  sField.value.length;
+    }
+    function setFocus(id) {
+        var element = document.getElementById(id);
+        if (element != null) {
+            element.focus();
+        }
+        return true;
+    }
+
+    function limitText(limitFieldId, limitNum) {
+        var limitField = document.getElementById(limitFieldId);
+        if (limitField != null) {
+            var len = limitField.value.length;
+            if (len >= limitNum) {
+                limitField.value = limitField.value.substring(0,limitNum);
+                handleTextAreaElementChange(limitFieldId, limitNum, 'remaining', 'over limit');
+            }
+        }
+    }
+
+    function validateBillingCode(id,rowIndex){
+        var el = document.getElementById(id);
+        var text = el.options[el.selectedIndex].innerHTML;
+        var startsWith = 'M';
+        var pattern = new RegExp("Meet");
+        if(text.substring(0, startsWith.length) === startsWith && pattern.test(text))
+            document.getElementById("warning" + rowIndex).innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEETING ENTRY REQUIRES A TRAVEL ENTRY.";
+        else
+            document.getElementById("warning" + rowIndex).innerHTML ="";
+    }
+
+    function displayCommunications(id,value){
+        var text = $('[id*="listOfCodes"]').html();
+        var el = document.getElementById(value);
+        value = el.options[el.selectedIndex].innerHTML;
+        if(text.indexOf(value) >= 0)
+            $('.' + id).show();
+        else
+            $('.' + id).hide();
+    }
+
+    function setCommunicationPopup(){
+
+        var seeSelectedWrapperId = selectedWrapperId;
+        var inputs = $("input.selectedCommunication:checkbox");
+        var communicationField = $('.relatedCommunications' + selectedWrapperId);
+
+        var relatedCommunicationLinks = $('#relatedCommunicationLinks' + selectedWrapperId).html('');
+
+        communicationField.val('');
+
+        inputs.each(function( index ) {
+
+
+        var isChecked = $(this).prop('checked');
+            if($(this).prop('checked')){
+                var mainId = $(this).attr('title').split(';;')[0];
+                var subject = $(this).attr('title').split(';;')[1].split(',,')[0];
+                debugger;
+                communicationField.val(communicationField.val() + $(this).attr('title'));
+                relatedCommunicationLinks.append('<a href="/' + mainId + '" target="_blank">' + subject + '</a>&nbsp;&nbsp;&nbsp;&nbsp;');
+                var i = 0;
+
+            }
+        });
+
+        var attInputs = $("input.selectedAttachment:checkbox");
+        var attachmentField = $('.relatedAttachments' + selectedWrapperId);
+
+        var relatedAttachmentLinks = $('#relatedAttachmentLinks' + selectedWrapperId).html('');
+
+        attachmentField.val('');
+        attInputs.each(function( index ) {
+
+
+        var isChecked = $(this).prop('checked');
+            if($(this).prop('checked')){
+                debugger;
+                var mainId = $(this).attr('title').split(';;')[0];
+                var subject = $(this).attr('title').split(';;')[1].split(',,')[0];
+                attachmentField.val(attachmentField.val() + $(this).attr('title'));
+                relatedAttachmentLinks.append('<a href="/servlet/servlet.FileDownload?file=' + mainId + '" target="_blank">' + subject + '</a>&nbsp;&nbsp;&nbsp;&nbsp;');
+                var i = 0;
+
+            }
+        });
+
+    }
+
+    var selectedWrapperId = '';
+
+    function checkSelected(){
+        debugger;
+        var communicationField = $('.relatedCommunications' + selectedWrapperId);
+
+        var allCommunicationRecords;
+        if(communicationField.val() != null && communicationField.val().length > 1){
+            allCommunicationRecords = communicationField.val().split(",,");
+        }
+        var inputs = $("input.selectedCommunication:checkbox");
+        inputs.each(function( index ) {
+                    $(this).prop('checked',false);
+        });
+
+        if(allCommunicationRecords != null)
+        $.each(allCommunicationRecords,function( key,value ) {
+
+            var compareString = value.split(';;')[0];
+
+            inputs.each(function( index ) {
+                var mainId = $(this).attr('title').split(';;')[0];
+
+                if(compareString == mainId)
+                    $(this).prop('checked',true);
+
+            });
+
+        });
+
+
+        var attachmentField = $('.relatedAttachments' + selectedWrapperId);
+
+        var allAttachmentRecords;
+
+        if(attachmentField.val() && attachmentField.val().length > 1)
+            allAttachmentRecords = attachmentField.val().split(",,");
+
+        var attInputs = $("input.selectedAttachment:checkbox");
+
+        attInputs.each(function( index ) {
+                    $(this).prop('checked',false);
+        });
+
+        if(allAttachmentRecords != null)
+        $.each(allAttachmentRecords,function( key,value ) {
+            var compareString = value.split(';;')[0];
+            attInputs.each(function( index ) {
+                if(compareString == $(this).attr('title').split(';;')[0])
+                    $(this).prop('checked',true);
+            });
+
+        });
+
+    }
+
+    function expandCollapse(id){
+
+        var expandableDiv = $('#expandable' + id);
+
+        debugger;
+        if(expandableDiv.attr('title') == 'collapsed'){
+            $('[id*="expandable"]').height(40);
+            $('[id*="expandable"]').prop('title','collapsed');
+
+            expandableDiv.prop('title','expanded');
+            expandableDiv.height('100%');
+        }
+
+        else if(expandableDiv.attr('title') == 'expanded'){
+            expandableDiv.prop('title','collapsed');
+            expandableDiv.height(40);
+        }
+
+    }
+
+</script>
+<apex:pageMessages id="messages"/>
+<apex:form >
+     <apex:actionFunction id="reloadMinMax" name="reloadMinMax" action="{!billingCodeChanged}" rerender="BillingMaxRegion,BillingMinRegion, AdminBillingMaxRegion, AdminBillingMinRegion">
+        <apex:param name="selectedBillingCode" assignTo="{!selectedBillingCodeId}" value="" />
+        <apex:param name="currentCaseNoteIndex" assignTo="{!currentCaseNoteIndex}" value="" />
+    </apex:actionFunction>
+    <apex:pageBlock title="Case Note Entry" id="lstCaseNoteEntry">
+       <apex:pageBlockButtons >
+
+                <strong><apex:actionStatus startText="Saving..." stopText="" id="saveStatus"/></strong>
+                <apex:commandButton oncomplete="showButtons()" id="btnSave" styleClass="btnSave" value="Save" onClick="hideButtons('btnSave');" action="{!SaveCaseNoteEntry}" status="saveStatus" rerender="messages,btnSave,btnCancel" />
+                <apex:commandButton id="btnCancel" value="Cancel" onClick="return cancelConfirm();" action="{!Cancel}" immediate="true"/>
+                <input Type="Hidden" id="cancelBtnId" value="{!$Component.btnCancel}"/>
+
+       </apex:pageBlockButtons>
+       <apex:outputPanel id="toReferesh">
+       <apex:outputText value="{!listOfCodes}" id="listOfCodes" style="display:none;"/>
+       <table width="100%" cellspacing="0" cellPadding="2">
+       <apex:repeat value="{!lstWrapCNE}" var="item" id="tableCNE">
+            <tr>
+                <td class="pbSubheader tertiaryPalette" colspan="{!iColCount}" style="background-color: #99CCCC">
+                    <h2>Case Report:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objOpp.Id}" target="_blank" onFocus="javascript:setFocus('{!$Component.ActivityDate}');"><font color="#000000">{!objOpp.Name}</font></a></h3>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Account:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objOpp.AccountId}" target="_blank"><font color="#000000">{!objOpp.Account.Name}</font></a></h3>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Related Case:</h2>&nbsp;&nbsp;&nbsp;<h3><a href="/{!objOpp.Related_Case__c}" target="_blank" ><font color="#000000">{!objOpp.Related_Case__r.CaseNumber}</font></a></h3>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h2>Service Dates:</h2>&nbsp;&nbsp;&nbsp;<h3><font color="#000000"><apex:outputText value="{!objOpp.Service_Date_From__c}-{!objOpp.Service_Date_Thru__c}"/></font></h3>
+                </td>
+            </tr>
+            <tr>
+            <th style="border-top: 1px solid grey;border-left: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Activity Date</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Activity Code</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Prof Units (CM)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">T/W Units (CM)</th>
+                <apex:outputPanel rendered="{!bNotNurse}" id="pnl1">
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Prof Units (A)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Mileage (A)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Prof Units (B)</th>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Mileage (B)</th>
+                </apex:outputPanel>
+            <th style="border-top: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Created By</th>
+            </tr>
+            <tr>
+                <td style="border-bottom: 1px solid grey;border-left: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;">
+                <apex:outputPanel layout="block" styleClass="requiredInput">
+                    <div class="requiredBlock"></div>
+                    <apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Activity_Date__c}" required="false" id="ActivityDate" onchange="javascript:return setFocus('{!$Component.billingCode}');"/>
+                </apex:outputPanel>
+                </td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" >
+                   <apex:selectList id="billingCode" style="background-color: #F8F8F8" value="{!item.objCNE.Billing_Code__c}"
+                            size="1" rendered="true" onChange="reloadMinMax(this.value, {!item.rowIndex});validateBillingCode(this.id,{!item.rowIndex});displayCommunications('{!item.rowIndex}',this.id);"
+                            onBlur="javascript:return setFocus('{!$Component.professionalHours}');">
+                            <apex:selectOptions value="{!BillingCodeAndFill}" />
+                        </apex:selectList></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Professional_Hours_Nurse__c}" id="professionalHours"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Travel_Wait_Hours_Nurse__c}"/></td>
+                    <apex:outputPanel rendered="{!bNotNurse}" id="pnl2">
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Professional_Hours__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Mileage__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Adj_Professional_Hours__c}"/></td>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Adj_Mileage__c}"/></td>
+                </apex:outputPanel>
+                <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField value="{!item.objCNE.CreatedBy.Name}"/></td>
+            </tr>
+            <tr>
+               <th style="border-right: 1px solid grey;border-bottom: 1px solid grey;border-left: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;">
+                   <apex:outputText style="float:left;" value="{0}" id="BillingMinRegion"><apex:param value="{!item.billingMin}"/></apex:outputText>
+                   <apex:outputText style="float:right;" value="{0}" id="AdminBillingMinRegion" rendered="{!isAdmin}"><apex:param value="{!item.AdminBillingMin}"/></apex:outputText>
+               </td>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Mileage (CM)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Exp (CM)</th>
+               <td style="border-right: 1px solid grey;background-color: #99CCCC;"></td>
+                    <apex:outputPanel rendered="{!bNotNurse}" id="pnl3">
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">T/W Hrs (A)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">T/W Hrs (B)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+                    </apex:outputPanel>
+            </tr>
+            <tr>
+               <th style="border-right: 1px solid grey;border-bottom: 1px solid grey;border-left: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;">
+                    <apex:outputText style="float:left;" value="{0}" id="BillingMaxRegion"><apex:param value="{!item.billingMax}"/></apex:outputText>
+                    <apex:outputText style="float:right;" value="{0}" id="AdminBillingMaxRegion" rendered="{!isAdmin}"><apex:param value="{!item.AdminBillingMax}"/></apex:outputText>
+               </td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Mileage_Nurse__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Expenses_Nurse__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <apex:outputPanel rendered="{!bNotNurse}" id="pnl4">
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Travel_Wait_Hours__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Adj_Travel_Wait_Hours__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               </apex:outputPanel>
+            </tr>
+            <tr>
+               <th colspan="2" style="border-left: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">
+               <span class="helpButton" id="DescHelpText-_help">Case Note Description<img src="{!URLFOR($Resource.helpImage)}" alt="" class="helpOrb" title=""/><script type="text/javascript">sfdcPage.setHelp('DescHelpText', 'Add detailed description of your activity ? this is your ?charting? area.  Abbreviation is allowed.');</script></span><span style="color:red" id="warning{!item.rowIndex}"></span></th>
+
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">From (City)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">To (City)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow"><apex:outputPanel rendered="{!Not(ReturnTrueIfNurse)}">Special Rate</apex:outputPanel></th>
+               <apex:outputPanel rendered="{!bNotNurse}" id="pnl5">
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Exp (A)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow">Exp (B)</th>
+               <th style="border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+               </apex:outputPanel>
+            </tr>
+            <tr>
+               <td title="Please add description" colspan="2" width="30%" style="border-bottom: 1px solid grey;border-left: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;">
+               <div class="requiredInput"><div class="requiredBlock"></div><apex:inputTextarea rows="5" cols="80" id="txtDesc" style="background-color: #F8F8F8" value="{!item.objCNE.Work_Description__c}" onKeyDown="textCounter('{!$Component.txtDesc}','{!$Component.remLen1}',255)"
+                onKeyUp="textCounter('{!$Component.txtDesc}','{!$Component.remLen1}',255)"/></div><BR/>
+                <apex:inputText size="2" disabled="true" id="remLen1" />characters left</td>
+
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Driving_From_City__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Driving_To_City__c}"/></td>
+               <td align="center" style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:outputPanel rendered="{!Not(ReturnTrueIfNurse)}"><apex:inputCheckbox id="chkRush" value="{!item.objCNE.Rush__c}" required="false" /></apex:outputPanel></td>
+               <apex:outputPanel rendered="{!bNotNurse}" id="pnl6">
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Expenses__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"><apex:inputField style="background-color: #F8F8F8" value="{!item.objCNE.Adj_Expenses__c}"/></td>
+               <td style="border-bottom: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;"></td>
+               </apex:outputPanel>
+            </tr>
+
+            <tr class="{!item.rowIndex}" style="{!IF(item.renderCommunications,'display:table-row;','display:none;')}">
+               <th colspan="2" style="border-left: 1px solid grey;background-color: #99CCCC;" class="headerRow">Related Communications</th>
+               <th colspan="2" style="border-left: 1px solid grey;background-color: #99CCCC;" class="headerRow">Related Attachments</th>
+               <th colspan="2" style="border-left: 1px solid grey;border-right: 1px solid grey;background-color: #99CCCC;" class="headerRow"></th>
+            </tr>
+            <tr class="{!item.rowIndex}" style="{!IF(item.renderCommunications,'display:table-row;','display:none;')}">
+                <td colspan="2" style="border-bottom: 1px solid grey;border-left: 1px solid grey;background-color: #99CCCC;">
+                    <apex:inputText value="{!item.objCne.RelatedCommunicationHistories__c}" styleClass="relatedCommunications{!item.rowIndex}" style="display:none;"/>
+                <apex:outputPanel id="relatedComm">
+                <span id="relatedCommunicationLinks{!item.rowIndex}">
+                    <apex:repeat value="{!item.allCommunications}" var="al" >
+                        <apex:outputLink value="/{!al.attId}" target="_blank"> {!al.attName} </apex:outputLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </apex:repeat>
+                </span>
+                </apex:outputPanel>
+                </td>
+                <td colspan="2" style="border-bottom: 1px solid grey;border-left: 1px solid grey;background-color: #99CCCC;">
+                <apex:outputPanel id="relatedAtt">
+                <apex:inputText value="{!item.objCne.RelatedAttachments__c}" styleClass="relatedAttachments{!item.rowIndex}" style="display:none;"/>
+                    <span id="relatedAttachmentLinks{!item.rowIndex}">
+                    <apex:repeat value="{!item.allAttachments}" var="al" >
+                        <a href="/servlet/servlet.FileDownload?file={!al.attId}" target="_blank"> {!al.attName} </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </apex:repeat>
+                    </span>
+                    </apex:outputPanel>
+               </td>
+               <td colspan="2" style="border-bottom: 1px solid grey;border-left: 1px solid grey;background-color: #99CCCC;"><input type="button" value="Select Supporting Document(s)" onclick="document.getElementById('tstpopupMain').style.display = 'block';selectedWrapperId = '{!item.rowIndex}';checkSelected();"></input></td>
+            </tr>
+                        <tr><td colspan="{!iColCount}"></td></tr>
+       </apex:repeat>
+       </table>
+       </apex:outputPanel>
+       <div id="tstpopupMain" style="display:none;">
+        <apex:outputPanel id="tstpopup">
+        <apex:outputPanel styleClass="popupBackground" layout="block"/>
+            <apex:outputPanel styleClass="custPopup" layout="block">
+            <apex:pageBlock >
+            <apex:pageBlockButtons location="both">
+            <input type="button" value="Save" onclick="setCommunicationPopup();document.getElementById('tstpopupMain').style.display = 'none';"/>
+            <input type="button" value="Close" onclick="document.getElementById('tstpopupMain').style.display = 'none';"/>
+                </apex:pageBlockButtons>
+                <div style="max-height:250px;overflow:auto;border:1px solid grey">
+                <apex:pageBlockSection title="Communication Histories" columns="1">
+                <apex:commandButton value="" status="loading" action="{!getRelatedRecords}"  rerender="chs,atts" style="background: url(/img/alohaSkin/sync.png) top left no-repeat;width:20px;height:18px;"/>
+                <apex:PageBlockTable value="{!availableCommunicationHistories}" var="ach" id="chs" rowClasses="even, odd">
+
+                <apex:column >
+                    <apex:inputCheckBox title="{!ach.a.Id};;{!ach.a.Subject},," styleClass="selectedCommunication" value="{!ach.isSelected}">
+                    </apex:inputCheckBox>
+                </apex:column>
+                <apex:column headerValue="Activity Date" value="{!ach.a.ActivityDate}"/>
+                <apex:column >
+                    <a style="padding-left:5px;padding-right:5px;" href="/{!ach.a.Id}" target="_blank">View</a>
+                </apex:column>
+                <apex:column headerValue="Additional To Email" value="{!ach.additionalToEmail}"/>
+                <apex:column headerValue="Received/Sent" value="{!ach.recOrSent}"/>
+                <apex:column value="{!ach.a.Subject}"/>
+                <apex:column headerValue="Content">
+                    <div><a style="padding-bottom:5px;"  id="{!ach.a.Id}" onclick="debugger;expandCollapse(this.id);" href="#">Expand/Collapse</a></div>
+                    <div title="collapsed" style="height:40px;overflow:hidden;" id="expandable{!ach.a.Id}">
+                        <apex:outputText value="{!ach.a.Description}"/>
+                    </div>
+                </apex:column>
+
+            </apex:PageBlockTable>
+            </apex:pageBlockSection>
+            </div>
+            <br/>
+            <br/>
+            <div style="max-height:250px;overflow:auto;border:1px solid grey">
+            <apex:pageBlockSection title="Attachments" columns="1">
+            <apex:commandButton value="" status="loading" action="{!getRelatedRecords}"  rerender="chs,atts" style="background: url(/img/alohaSkin/sync.png) top left no-repeat;width:20px;height:18px;"/>
+                <apex:PageBlockTable id="atts" value="{!availableAttachments}" var="ach">
+                <apex:column >
+                    <apex:inputCheckbox value="{!ach.isSelected}" title="{!ach.a.Id};;{!ach.a.Name},," styleClass="selectedAttachment">
+                    </apex:inputCheckbox>
+                </apex:column>
+                <apex:column value="{!ach.a.LastModifiedDate}"/>
+                <apex:column >
+                        <a style="padding-left:5px;padding-right:5px;" href="/servlet/servlet.FileDownload?file={!ach.a.Id}" target="_blank">View</a>
+                </apex:column>
+                <apex:column value="{!ach.a.Name}"/>
+                <apex:column value="{!ach.a.ContentType}"/>
+
+                </apex:PageBlockTable>
+                </apex:pageBlockSection>
+            </div>
+            </apex:pageBlock>
+            </apex:outputPanel>
+            <apex:outputpanel >
+               <apex:actionstatus id="saving">
+                   <apex:facet name="start">
+                       <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                              height: 100%;opacity:0.65;width:100%;z-index:9999;position:fixed;">
+                           <div class="waitingHolder" style="top: 120.2px; width: 91px;position:fixed;left:45%;">
+                               <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                               <span class="waitingDescription">Saving...</span>
+                           </div>
+                       </div>
+                   </apex:facet>
+               </apex:actionstatus>
+           </apex:outputpanel>
+           <apex:outputpanel >
+               <apex:actionstatus id="loading">
+                   <apex:facet name="start">
+                       <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                              height: 100%;opacity:0.65;width:100%;z-index:9999;position:fixed;">
+                           <div class="waitingHolder" style="top: 120.2px; width: 91px;position:fixed;left:45%;">
+                               <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                               <span class="waitingDescription">Loading Related Records...</span>
+                           </div>
+                       </div>
+                   </apex:facet>
+               </apex:actionstatus>
+
+           </apex:outputpanel>
+        </apex:outputPanel>
+        </div>
+    </apex:pageBlock>
+</apex:form>
+<script>
+    if(document.getElementById('j_id0:j_id29:lstCaseNoteEntry:tableCNE:0:ActivityDate')!=null)
+        document.getElementById('j_id0:j_id29:lstCaseNoteEntry:tableCNE:0:ActivityDate').focus();
+</script>
+</apex:page>

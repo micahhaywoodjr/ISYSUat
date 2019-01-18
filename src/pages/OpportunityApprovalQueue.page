@@ -1,0 +1,113 @@
+<apex:page id="pageApprovalQueue"
+    controller="OpportunityApprovalQueueController"
+    action="{!initializeController}"
+    showHeader="{!isWebTab}"
+    sideBar="{!isWebTab}"
+    tabStyle="Pending_Approvals__tab">
+    
+    <apex:sectionHeader title="Pending Approvals" subtitle="{!$User.FirstName} {!$User.LastName}" rendered="{!isWebTab}"/>
+    
+    <apex:outputPanel id="panelComponent" layout="block" styleClass="{!IF(isWebTab == false, 'homeTab homepage','')}">
+        <apex:pageMessages />
+        
+        <apex:pageBlock id="blockApprovalQueue" mode="detail" >
+            <apex:outputPanel id="panelContainer" layout="block" style="{!IF(isWebTab == false,'height: 260px; overflow:auto;','')}">
+                <apex:pageBlockSection id="sectionAApprovals" title="A Notes Approval" columns="1" collapsible="false">
+                    <apex:outputPanel id="panelANoRecords" layout="inline" rendered="{!AApprovals.size == 0}">No approvals currently being reviewed.</apex:outputPanel>
+                     
+                    <apex:pageBlockTable id="dataAApprovals" value="{!AApprovals}" var="a" rendered="{!AApprovals.size != 0}">
+                        <apex:column headerValue="Action" styleClass="actionColumn">
+                            <a title="Reassign" class="actionLink" href="/{!a.ProcessWorkItem.Id}/e?et=REASSIGN&amp;retURL=%2F{!a.OppEntry.Id}" target="_top">Reassign</a> | <a title="Approve / Reject" class="actionLink" href="/p/process/ProcessInstanceWorkitemWizardStageManager?id={!a.ProcessWorkItem.Id}" target="_top">Approve / Reject</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.Service_Date_Thru__c}"/>
+                        <apex:column headerValue="{!$ObjectType.Opportunity.fields.Name.label}">
+                            <apex:outputPanel layout="none" rendered="{!NOT(a.InReview)}"><a href="/{!a.OppEntry.Id}" target="_top">{!a.OppEntry.Name}</a></apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!a.InReview}">{!a.OppEntry.Name}</apex:outputPanel>
+                        </apex:column>
+                        <apex:column headerValue="Account">
+                            <a href="/{!a.OppEntry.AccountId}" target="_top">{!a.OppEntry.Account.Name}</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.Priority__c}"/>
+                        <apex:column value="{!a.OppEntry.In_Review__c}"/>
+                        <apex:column headerValue="Most Recent Approver">
+                            <a href="/{!a.ApproverId}" target="_top">{!a.ApproverName}</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.RecordTypeId}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockSection id="sectionBApprovals" title="B Notes Approval" columns="1" collapsible="false">
+                    <apex:outputPanel id="panelBNoRecords" layout="inline" rendered="{!BApprovals.size == 0}">No approvals currently being reviewed.</apex:outputPanel>
+                    
+                    <apex:pageBlockTable id="dataBApprovals" value="{!BApprovals}" var="a" rendered="{!BApprovals.size != 0}">
+                        <apex:column headerValue="Action" styleClass="actionColumn">
+                            <a title="Reassign" class="actionLink" href="/{!a.ProcessWorkItem.Id}/e?et=REASSIGN&amp;retURL=%2F{!a.OppEntry.Id}" target="_top">Reassign</a> | <a title="Approve / Reject" class="actionLink" href="/p/process/ProcessInstanceWorkitemWizardStageManager?id={!a.ProcessWorkItem.Id}" target="_top">Approve / Reject</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.Service_Date_Thru__c}"/>
+                        <apex:column headerValue="{!$ObjectType.Opportunity.fields.Name.label}">
+                            <apex:outputPanel layout="none" rendered="{!NOT(a.InReview)}"><a href="/{!a.OppEntry.Id}" target="_top">{!a.OppEntry.Name}</a></apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!a.InReview}">{!a.OppEntry.Name}</apex:outputPanel>
+                        </apex:column>
+                        <apex:column headerValue="Account">
+                            <a href="/{!a.OppEntry.AccountId}" target="_top">{!a.OppEntry.Account.Name}</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.Priority__c}"/>
+                        <apex:column value="{!a.OppEntry.In_Review__c}"/>
+                        <apex:column headerValue="Most Recent Approver">
+                            <a href="/{!a.ApproverId}" target="_top">{!a.ApproverName}</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.RecordTypeId}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockSection id="sectionQAApprovals" title="QA Approval" columns="1" collapsible="false">
+                    <apex:outputPanel id="panelQANoRecords" layout="inline" rendered="{!QAApprovals.size == 0}">No approvals currently being reviewed.</apex:outputPanel>
+                    
+                    <apex:pageBlockTable id="dataQAApprovals" value="{!QAApprovals}" var="a" rendered="{!QAApprovals.size != 0}">
+                        <apex:column headerValue="Action" styleClass="actionColumn">
+                            <a title="Reassign" class="actionLink" href="/{!a.ProcessWorkItem.Id}/e?et=REASSIGN&amp;retURL=%2F{!a.OppEntry.Id}" target="_top">Reassign</a> | <a title="Approve / Reject" class="actionLink" href="/p/process/ProcessInstanceWorkitemWizardStageManager?id={!a.ProcessWorkItem.Id}" target="_top">Approve / Reject</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.Service_Date_Thru__c}"/>
+                        <apex:column headerValue="{!$ObjectType.Opportunity.fields.Name.label}">
+                            <apex:outputPanel layout="none" rendered="{!NOT(a.InReview)}"><a href="/{!a.OppEntry.Id}" target="_top">{!a.OppEntry.Name}</a></apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!a.InReview}">{!a.OppEntry.Name}</apex:outputPanel>
+                        </apex:column>
+                        <apex:column headerValue="Account">
+                            <a href="/{!a.OppEntry.AccountId}" target="_top">{!a.OppEntry.Account.Name}</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.Priority__c}"/>
+                        <apex:column value="{!a.OppEntry.In_Review__c}"/>
+                        <apex:column headerValue="Most Recent Approver">
+                            <a href="/{!a.ApproverId}" target="_top">{!a.ApproverName}</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.RecordTypeId}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockSection id="sectionDistributionApprovals" title="Distribution Approval" columns="1" collapsible="false">
+                    <apex:outputPanel id="panelDistributionNoRecords" layout="inline" rendered="{!DistributionApprovals.size == 0}">No approvals currently being reviewed.</apex:outputPanel>
+                    
+                    <apex:pageBlockTable id="dataDistributionApprovals" value="{!DistributionApprovals}" var="a" rendered="{!DistributionApprovals.size != 0}">
+                        <apex:column headerValue="Action" styleClass="actionColumn">
+                            <a title="Reassign" class="actionLink" href="/{!a.ProcessWorkItem.Id}/e?et=REASSIGN&amp;retURL=%2F{!a.OppEntry.Id}" target="_top">Reassign</a> | <a title="Approve / Reject" class="actionLink" href="/p/process/ProcessInstanceWorkitemWizardStageManager?id={!a.ProcessWorkItem.Id}" target="_top">Approve / Reject</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.Service_Date_Thru__c}"/>
+                        <apex:column headerValue="{!$ObjectType.Opportunity.fields.Name.label}">
+                            <apex:outputPanel layout="none" rendered="{!NOT(a.InReview)}"><a href="/{!a.OppEntry.Id}" target="_top">{!a.OppEntry.Name}</a></apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!a.InReview}">{!a.OppEntry.Name}</apex:outputPanel>
+                        </apex:column>
+                        <apex:column headerValue="Account">
+                            <a href="/{!a.OppEntry.AccountId}" target="_top">{!a.OppEntry.Account.Name}</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.Priority__c}"/>
+                        <apex:column value="{!a.OppEntry.In_Review__c}"/>
+                        <apex:column headerValue="Most Recent Approver">
+                            <a href="/{!a.ApproverId}" target="_top">{!a.ApproverName}</a>
+                        </apex:column>
+                        <apex:column value="{!a.OppEntry.RecordTypeId}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>
+   </apex:outputPanel>
+</apex:page>

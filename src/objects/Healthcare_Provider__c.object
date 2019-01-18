@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AreaCode__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.AreaCodePhone__c</formula>
+        <label>Area Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AreaRegion__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Contact__r.Region__c)</formula>
+        <label>Area Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Area__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Area</label>
+        <referenceTo>Area__c</referenceTo>
+        <relationshipLabel>Healthcare Providers</relationshipLabel>
+        <relationshipName>Healthcare_Providers</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipName>Other_Healthcare_Providers</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>City_Of_Primary_Treater__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.MailingCity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>City Of Primary Treater</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Contact</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Healthcare Provider</inlineHelpText>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>Other_Healthcare_Providers</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Inactive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Previous, but inactive treaters on the case</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Designate a Healthcare Provider as inactive when the Employee is no longer treating with them</inlineHelpText>
+        <label>Inactive</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Mailing_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.MailingStreet &amp;&quot; &quot;&amp;Contact__r.MailingCity&amp;&quot; &quot;&amp;Contact__r.MailingState&amp;&quot; &quot;&amp;Contact__r.MailingPostalCode&amp;&quot; &quot;&amp;Contact__r.MailingCountry</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mailing Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mileage__c</fullName>
+        <externalId>false</externalId>
+        <label>Mileage</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Contact__r.Phone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Primary</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Only one physician can be designated as Primary Health Care Provider.</inlineHelpText>
+        <label>Primary</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ProviderStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>Provider Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>false</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Arizona</fullName>
+                    <default>false</default>
+                    <label>Arizona</label>
+                </value>
+                <value>
+                    <fullName>Bakersfield Area</fullName>
+                    <default>false</default>
+                    <label>Bakersfield Area</label>
+                </value>
+                <value>
+                    <fullName>Fresno North &amp; South</fullName>
+                    <default>false</default>
+                    <label>Fresno North &amp; South</label>
+                </value>
+                <value>
+                    <fullName>Imperial County</fullName>
+                    <default>false</default>
+                    <label>Imperial County</label>
+                </value>
+                <value>
+                    <fullName>Inland Empire-Central</fullName>
+                    <default>false</default>
+                    <label>Inland Empire-Central</label>
+                </value>
+                <value>
+                    <fullName>Inland Empire-South</fullName>
+                    <default>false</default>
+                    <label>Inland Empire-South</label>
+                </value>
+                <value>
+                    <fullName>LA Central</fullName>
+                    <default>false</default>
+                    <label>LA Central</label>
+                </value>
+                <value>
+                    <fullName>LA Southbay</fullName>
+                    <default>false</default>
+                    <label>LA Southbay</label>
+                </value>
+                <value>
+                    <fullName>LA Southeast</fullName>
+                    <default>false</default>
+                    <label>LA Southeast</label>
+                </value>
+                <value>
+                    <fullName>LA Valley</fullName>
+                    <default>false</default>
+                    <label>LA Valley</label>
+                </value>
+                <value>
+                    <fullName>Long Beach/Pasadena</fullName>
+                    <default>false</default>
+                    <label>Long Beach/Pasadena</label>
+                </value>
+                <value>
+                    <fullName>Nevada</fullName>
+                    <default>false</default>
+                    <label>Nevada</label>
+                </value>
+                <value>
+                    <fullName>Oakland/East Bay</fullName>
+                    <default>false</default>
+                    <label>Oakland/East Bay</label>
+                </value>
+                <value>
+                    <fullName>OC North</fullName>
+                    <default>false</default>
+                    <label>OC North</label>
+                </value>
+                <value>
+                    <fullName>OC South</fullName>
+                    <default>false</default>
+                    <label>OC South</label>
+                </value>
+                <value>
+                    <fullName>Sacto Central</fullName>
+                    <default>false</default>
+                    <label>Sacto Central</label>
+                </value>
+                <value>
+                    <fullName>Sacto North</fullName>
+                    <default>false</default>
+                    <label>Sacto North</label>
+                </value>
+                <value>
+                    <fullName>SanGabriel Valley</fullName>
+                    <default>false</default>
+                    <label>SanGabriel Valley</label>
+                </value>
+                <value>
+                    <fullName>San Jose &amp; South</fullName>
+                    <default>false</default>
+                    <label>San Jose &amp; South</label>
+                </value>
+                <value>
+                    <fullName>Santa Barbara+North</fullName>
+                    <default>false</default>
+                    <label>Santa Barbara+North</label>
+                </value>
+                <value>
+                    <fullName>SD Area North</fullName>
+                    <default>false</default>
+                    <label>SD Area North</label>
+                </value>
+                <value>
+                    <fullName>SD Area South</fullName>
+                    <default>false</default>
+                    <label>SD Area South</label>
+                </value>
+                <value>
+                    <fullName>SF Central &amp; North</fullName>
+                    <default>false</default>
+                    <label>SF Central &amp; North</label>
+                </value>
+                <value>
+                    <fullName>SF South</fullName>
+                    <default>false</default>
+                    <label>SF South</label>
+                </value>
+                <value>
+                    <fullName>Ventura/Oxnard Area</fullName>
+                    <default>false</default>
+                    <label>Ventura/Oxnard Area</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Specialty__c</fullName>
+        <description>Specialty</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specialty of healthcare provider</inlineHelpText>
+        <label>Specialty</label>
+        <length>80</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Healthcare Provider</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>HP-{000000}</displayFormat>
+        <label>Record #</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Healthcare Providers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>OneActivePrimaryProviderAllowed</fullName>
+        <active>true</active>
+        <description>This validation rules enforces that only one Active Primary provider can be associated to a Case.</description>
+        <errorConditionFormula>Case__r.PrimaryProvidersNumber__c  &gt; 1 ||
+(Case__r.PrimaryProvidersNumber__c == 1 &amp;&amp; 
+((IsChanged(ProviderStatus__c) &amp;&amp; TEXT(ProviderStatus__c) = &quot;Active&quot; &amp;&amp; Primary__c==true)  ||
+(IsChanged(Primary__c) &amp;&amp; TEXT(ProviderStatus__c) = &quot;Active&quot; &amp;&amp; Primary__c==true))) ||
+(ISNEW() &amp;&amp; 
+Case__r.PrimaryProvidersNumber__c == 1 &amp;&amp;
+TEXT(ProviderStatus__c) = &quot;Active&quot; &amp;&amp; Primary__c==true)</errorConditionFormula>
+        <errorMessage>This case already has an Active Primary Provider associated to it, please correct the data and try again or contact your System Administrator.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>New_Other_Healthcare_Provider</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Other Healthcare Provider</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>https://na6.salesforce.com/a09/e?CF00N80000003lE1e={!Case.CaseNumber}&amp;CF00N80000003lE1e_lkid={!Case.Id}&amp;saveURL=/{!Case.Id}&amp;cancelURL=/{!Case.Id}</url>
+    </webLinks>
+</CustomObject>

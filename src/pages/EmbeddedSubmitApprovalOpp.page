@@ -1,0 +1,7 @@
+<apex:page standardController="Opportunity">
+    
+    <apex:form style="text-align:center;padding-left:10%;">
+        <apex:commandButton rendered="{!Opportunity.StageName == 'In Process'}" value="Submit for Approval" onclick="window.parent.location = '/apex/SubmitForApprovalOpportunity?id={!Opportunity.Id}'"/>
+    </apex:form>
+    
+</apex:page>

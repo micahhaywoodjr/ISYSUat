@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Appointment /  Visit</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Appointment_Location__c</fullName>
+        <description>Appointment Location</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate physician office, hospital visit, home visit etc</inlineHelpText>
+        <label>Appointment Location</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendees__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>List all in attendance at the appointment including the Injured Worker and Case Manager</inlineHelpText>
+        <label>Attendees</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Authorization_for_Telephonic_Follow_up__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This box must be completed by SDL or Supervisor authorizing telephonic follow-up for an appointment</inlineHelpText>
+        <label>Authorization for Telephonic Follow-up</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Case_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case_Report_Opportunity__r.Related_Case__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Manager_Attended__c</fullName>
+        <description>Case Manager Attended?</description>
+        <externalId>false</externalId>
+        <label>Case Manager Attended?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No, Telephonic Follow Up</fullName>
+                    <default>false</default>
+                    <label>No, Telephonic Follow Up</label>
+                </value>
+                <value>
+                    <fullName>Yes, case manager met with the physician separately.</fullName>
+                    <default>false</default>
+                    <label>Yes, case manager met with the physician separately.</label>
+                </value>
+                <value>
+                    <fullName>No, case manager met with the physician separately.</fullName>
+                    <default>false</default>
+                    <label>No, case manager met with the physician separately.</label>
+                </value>
+                <value>
+                    <fullName>No, CM followed up in person at a later date</fullName>
+                    <default>false</default>
+                    <label>No, CM followed up in person at a later date</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Case_Report_Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Case Report / Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Appointments / Visits</relationshipLabel>
+        <relationshipName>Doctor_Visits</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Current_Medications__c</fullName>
+        <description>Current Medications</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Provide names of all current medications prescribed by ALL treating physicians. Address dosage &amp; frequency in the Treatment Plan &quot;Regarding Medications&quot; 
+Non-industrial medications should also be listed here, dosage &amp; frequency noted in Treatment Plan</inlineHelpText>
+        <label>Current Medications</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Date_ER_Sent__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>To be completed if applicable.</inlineHelpText>
+        <label>Date ER Sent</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_QSU_Sent__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>List the date the QSU was sent</inlineHelpText>
+        <label>Date QSU Sent</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_Appointment_Visit__c</fullName>
+        <description>Date of Appointment/Visit</description>
+        <externalId>false</externalId>
+        <label>Date of Appointment/Visit</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Doctor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Met With:</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Office Visit:  Select Healthcare Provider (new providers need to be added via reports@isyscm.com / Hosptial Visit:  Select Hospital / Home Visit:  Select Employee Name  (Lookup Contact record and select)</inlineHelpText>
+        <label>Physician/Facility:</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Appointments / Visits</relationshipLabel>
+        <relationshipName>Doctor_Visits</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Employees_Current_Status__c</fullName>
+        <description>Employees Current Status</description>
+        <externalId>false</externalId>
+        <label>Employees Current Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Improving</fullName>
+                    <default>false</default>
+                    <label>Improving</label>
+                </value>
+                <value>
+                    <fullName>Improving, but slow</fullName>
+                    <default>false</default>
+                    <label>Improving, but slow</label>
+                </value>
+                <value>
+                    <fullName>Stable</fullName>
+                    <default>false</default>
+                    <label>Stable</label>
+                </value>
+                <value>
+                    <fullName>Worsening</fullName>
+                    <default>false</default>
+                    <label>Worsening</label>
+                </value>
+                <value>
+                    <fullName>Unchanged</fullName>
+                    <default>false</default>
+                    <label>Unchanged</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Employees_Medical_Assessment__c</fullName>
+        <description>Employee&apos;s Medical Assessment</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Narrative of EE&apos;s complaints. Include EE&apos;s opinion of his recovery and description of symptoms.  NOT included are: reason for not attending appt, nature &amp; history of injury and anything other than the EE&apos;s own assessment.</inlineHelpText>
+        <label>Employee&apos;s Medical Assessment</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Evaluated_By__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Individual who evaluated the Injured Worker at this appointment may be a PA or NP etc.</inlineHelpText>
+        <label>Evaluated By:</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>IW_attended__c</fullName>
+        <externalId>false</externalId>
+        <label>IW attended?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MD_Findings_At_Exam__c</fullName>
+        <description>MD Findings At Exam</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Narrative form; MD physical findings.  Include; range of motion, neuro testing, strength testing, treatment recommendations; prescription medications and physical therapy etc.</inlineHelpText>
+        <label>MD Findings At Exam</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>30</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Next_Appointment_Date_Time__c</fullName>
+        <description>Next Appointment Date / Time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Next visit with this provider</inlineHelpText>
+        <label>Next Appointment Date / Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Next_Appointment_Not_Scheduled_because__c</fullName>
+        <description>Next Appointment Not Scheduled because:</description>
+        <externalId>false</externalId>
+        <label>Next Appointment Not Scheduled because:</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Outcome__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>List all new changes to the treatment plan. Ex. Norco discontinued, Request for post-op cryotherapy, Request for CT scan etc.</inlineHelpText>
+        <label>Outcome</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>15</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Purpose__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What was the reason for this appointment/visit. Ex. routine reevaluation, pre-op, post-op, safety home visit, emergency/rush visit</inlineHelpText>
+        <label>Purpose</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>15</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reason_for_not_attending__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please provide an explanation as to why the a/v was not attended</inlineHelpText>
+        <label>Reason for not attending</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Regarding_DME_or_Other_Ancillary_Service__c</fullName>
+        <description>Regarding DME/Home Health</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate type of equipment or Home Health services (frequency and duration) being requested or Home Health services are prescribed indicate &quot;Not Applicable&quot;</inlineHelpText>
+        <label>Regarding DME/Home Health</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Regarding_Evidence_Based_Information__c</fullName>
+        <description>Regarding Evidence Based Information</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate evidence based criteria such as ACOEM and/or MTUS or credible medical research</inlineHelpText>
+        <label>Regarding Evidence Based Information</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Regarding_Medications__c</fullName>
+        <description>Regarding Medications</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Dosage &amp; frequency of current medications prescribed or refilled for this industrial injury. 
+For Standard Uniform provide names of all current meds w/dosage &amp; frequency. Include meds for non-industrial conditions that impact recovery &amp; file progression.</inlineHelpText>
+        <label>Regarding Medications</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Regarding_Other__c</fullName>
+        <description>Regarding Other</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate treatments that do not fall in another category.  If none indicate &quot;Not Applicable&quot;</inlineHelpText>
+        <label>Regarding Other</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Regarding_Physical_Therapy__c</fullName>
+        <description>Regarding Therapy(s)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate frequency and duration of new therapy(s); traditional, alternative, chiropractic, request or whether continuation of previously authorized therapy is recommended.   If no therapy is prescribed, indicate &quot;Not Applicable&quot;</inlineHelpText>
+        <label>Regarding Therapy(s)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Regarding_Procedure_Authorization__c</fullName>
+        <description>Procedures/Diagnostic Studies Authorizations</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate non-surgical procedures (epidural injections, discogram) and diagnostic studies (x-ray, MRI, CT scan, ) that are requested or pending.  If none, indicate &quot;Not Applicable&quot;</inlineHelpText>
+        <label>Procedures/Diagnostic Studies Auths</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Regarding_Surgery_Authorization__c</fullName>
+        <description>Regarding Surgery Authorization</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate type of surgery being requested or pending.  If none write &quot;Not Applicable&quot;</inlineHelpText>
+        <label>Regarding Surgery Authorization</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>buttoncheck__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>buttoncheck</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Appointment / Visit</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>AV-{000000}</displayFormat>
+        <label>Appointment / Visit #</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Appointments / Visits</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>New_Appointment_Visit</fullName>
+        <active>true</active>
+        <label>New - Appointment / Visit</label>
+        <picklistValues>
+            <picklist>Case_Manager_Attended__c</picklist>
+            <values>
+                <fullName>No%2C CM followed up in person at a later date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%2C Telephonic Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%2C case manager met with the physician separately%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C case manager met with the physician separately%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Employees_Current_Status__c</picklist>
+            <values>
+                <fullName>Improving</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improving%2C but slow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unchanged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Worsening</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IW_attended__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sentry_Appointment_Visit</fullName>
+        <active>true</active>
+        <description>Record type used to create and maintain a Sentry Appointment / Visit</description>
+        <label>Sentry - Appointment / Visit</label>
+        <picklistValues>
+            <picklist>Case_Manager_Attended__c</picklist>
+            <values>
+                <fullName>No%2C Telephonic Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Employees_Current_Status__c</picklist>
+            <values>
+                <fullName>Improving</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improving%2C but slow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unchanged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Worsening</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IW_attended__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Standard_Appointment_Visit</fullName>
+        <active>true</active>
+        <description>Record type used to create and maintain a Standard Appointment / Visit record</description>
+        <label>Standard - Appointment / Visit</label>
+        <picklistValues>
+            <picklist>Case_Manager_Attended__c</picklist>
+            <values>
+                <fullName>No%2C CM followed up in person at a later date</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%2C Telephonic Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%2C case manager met with the physician separately%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C case manager met with the physician separately%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Employees_Current_Status__c</picklist>
+            <values>
+                <fullName>Improving</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Improving%2C but slow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unchanged</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Worsening</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IW_attended__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Error_Attended_Yes</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL(Case_Manager_Attended__c ,&quot;Yes&quot;)
+&amp;&amp; !ISBLANK(Reason_for_not_attending__c)</errorConditionFormula>
+        <errorDisplayField>Reason_for_not_attending__c</errorDisplayField>
+        <errorMessage>Error! Reason for not attending should be blank if Case Manager Attended is Yes.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Field_Missing</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL(Case_Manager_Attended__c ,&quot;No, Telephonic Follow Up&quot;) &amp;&amp;  ISBLANK(Reason_for_not_attending__c)</errorConditionFormula>
+        <errorDisplayField>Reason_for_not_attending__c</errorDisplayField>
+        <errorMessage>Error! Field missing - Reason for not attending must be completed</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>New_Sentry_Appointment_Visit</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Sentry Appointment / Visit</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/selectHealthcareProvider?OppId={!Opportunity.Id}&amp;butType=Sentry</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Standard_Appointment</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Standard Appointment / Visit</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/selectHealthcareProvider?OppId={!Opportunity.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>QuickStatusUpdate</fullName>
+        <availability>online</availability>
+        <description>Complete</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Quick Status Update</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_290}
+&amp;id={!Appointment_Visit__c.Id}
+
+&amp;reportid=[case]00OV0000000esoW</url>
+    </webLinks>
+    <webLinks>
+        <fullName>appointment_test</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>appointment test</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/APXTConga4__Conga_Composer
+?serverUrl={!API.Partner_Server_URL_290}
+&amp;id={!Appointment_Visit__c.Id}
+
+&amp;QueryId=[CGQuery]a0e0R0000007Qc9
+
+&amp;TemplateId=a0f0R000000kGjE
+&amp;OFN=test
+&amp;DefaultPDF=1
+
+&amp;EmailCC=support@mycompany.com
+&amp;EmailTemplateId=a0d0R0000003KWI
+&amp;EmailToId={!Appointment_Visit__c.CreatedById}
+&amp;EmailSubject=Thank+You
+
+
+&amp;LG0=1
+&amp;LG3=1
+&amp;LGAttachOption=1
+
+&amp;SC0=1
+&amp;SC1=Attachments
+&amp;AttachmentParentID={!Appointment_Visit__c.Id}
+
+&amp;UF0=1
+&amp;MFTS0=buttoncheck__c
+&amp;MFTSValue0=1
+
+&amp;DS7=2</url>
+        <width>800</width>
+    </webLinks>
+</CustomObject>

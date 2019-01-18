@@ -1,0 +1,959 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Customer_Service_Internal_External__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Service (Internal &amp; External)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Understands customer needs</fullName>
+                    <default>false</default>
+                    <label>Understands customer needs</label>
+                </value>
+                <value>
+                    <fullName>Responds to customer needs</fullName>
+                    <default>false</default>
+                    <label>Responds to customer needs</label>
+                </value>
+                <value>
+                    <fullName>Gives complete &amp; timely responses</fullName>
+                    <default>false</default>
+                    <label>Gives complete &amp; timely responses</label>
+                </value>
+                <value>
+                    <fullName>Exceeds expectations</fullName>
+                    <default>false</default>
+                    <label>Exceeds expectations</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Customer_Service_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Service Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Service_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Service Rating</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Dependability_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Dependability Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Dependability_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Dependability Rating</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Dependability__c</fullName>
+        <externalId>false</externalId>
+        <label>Dependability</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Attends work regularly</fullName>
+                    <default>false</default>
+                    <label>Attends work regularly</label>
+                </value>
+                <value>
+                    <fullName>Plans appropriately for absences</fullName>
+                    <default>false</default>
+                    <label>Plans appropriately for absences</label>
+                </value>
+                <value>
+                    <fullName>Embraces positive change</fullName>
+                    <default>false</default>
+                    <label>Embraces positive change</label>
+                </value>
+                <value>
+                    <fullName>Adjusts to changing responsibilities</fullName>
+                    <default>false</default>
+                    <label>Adjusts to changing responsibilities</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Employee_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee Comments</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Employee_Review_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee Review Notes</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Employee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Employee</label>
+        <referenceTo>SFDC_Employee__c</referenceTo>
+        <relationshipLabel>Reviews</relationshipLabel>
+        <relationshipName>R00N30000001eUQUEA2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Initiative_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Initiative Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Initiative_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Initiative Rating</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Initiative__c</fullName>
+        <externalId>false</externalId>
+        <label>Initiative</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Accepts new tasks enthusiastically</fullName>
+                    <default>false</default>
+                    <label>Accepts new tasks enthusiastically</label>
+                </value>
+                <value>
+                    <fullName>Assumes responsibility for tasks</fullName>
+                    <default>false</default>
+                    <label>Assumes responsibility for tasks</label>
+                </value>
+                <value>
+                    <fullName>Works independently when appropriate</fullName>
+                    <default>false</default>
+                    <label>Works independently when appropriate</label>
+                </value>
+                <value>
+                    <fullName>Actively seeks new assignments</fullName>
+                    <default>false</default>
+                    <label>Actively seeks new assignments</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Job_Knowledge_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Knowledge Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Job_Knowledge_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Knowledge Rating</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Job_Knowledge__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Knowledge</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Applies standard procedures</fullName>
+                    <default>false</default>
+                    <label>Applies standard procedures</label>
+                </value>
+                <value>
+                    <fullName>Maintains technical proficiency</fullName>
+                    <default>false</default>
+                    <label>Maintains technical proficiency</label>
+                </value>
+                <value>
+                    <fullName>Serves as a job resource for others</fullName>
+                    <default>false</default>
+                    <label>Serves as a job resource for others</label>
+                </value>
+                <value>
+                    <fullName>Documents work processes</fullName>
+                    <default>false</default>
+                    <label>Documents work processes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Manager_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Manager Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Managing Others</fullName>
+                    <default>false</default>
+                    <label>Managing Others</label>
+                </value>
+                <value>
+                    <fullName>No Subordinates</fullName>
+                    <default>false</default>
+                    <label>No Subordinates</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Period_Review__c</fullName>
+        <externalId>false</externalId>
+        <label>Period Review</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QC_Mentor_Recap__c</fullName>
+        <externalId>false</externalId>
+        <label>QC Mentor Recap</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>QRS_Recap__c</fullName>
+        <externalId>false</externalId>
+        <label>QRS Recap</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Quality_of_Work_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Quality of Work Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Quality_of_Work_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Quality of Work Rating</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Quality_of_Work__c</fullName>
+        <externalId>false</externalId>
+        <label>Quality of Work</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Follows instruction carefully</fullName>
+                    <default>false</default>
+                    <label>Follows instruction carefully</label>
+                </value>
+                <value>
+                    <fullName>Work is thorough and accurate</fullName>
+                    <default>false</default>
+                    <label>Work is thorough and accurate</label>
+                </value>
+                <value>
+                    <fullName>Implements process improvements</fullName>
+                    <default>false</default>
+                    <label>Implements process improvements</label>
+                </value>
+                <value>
+                    <fullName>Analyzes and dev effective solutions</fullName>
+                    <default>false</default>
+                    <label>Analyzes and dev effective solutions</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Quantity_of_Work_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity of Work Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Quantity_of_Work_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity of Work Rating</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Quantity_of_Work__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity of Work</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Produces acceptable work products</fullName>
+                    <default>false</default>
+                    <label>Produces acceptable work products</label>
+                </value>
+                <value>
+                    <fullName>Works quickly and efficiently</fullName>
+                    <default>false</default>
+                    <label>Works quickly and efficiently</label>
+                </value>
+                <value>
+                    <fullName>Organizes and prioritizes work</fullName>
+                    <default>false</default>
+                    <label>Organizes and prioritizes work</label>
+                </value>
+                <value>
+                    <fullName>Performs well under pressure</fullName>
+                    <default>false</default>
+                    <label>Performs well under pressure</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Review_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Review Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Review_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Review Notes</label>
+        <length>32000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Review_Overall_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Review Overall Score</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Review_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Review Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Probationary</fullName>
+                    <default>false</default>
+                    <label>Probationary</label>
+                </value>
+                <value>
+                    <fullName>Annual</fullName>
+                    <default>false</default>
+                    <label>Annual</label>
+                </value>
+                <value>
+                    <fullName>Quarterly</fullName>
+                    <default>false</default>
+                    <label>Quarterly</label>
+                </value>
+                <value>
+                    <fullName>Special</fullName>
+                    <default>false</default>
+                    <label>Special</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reviewer__c</fullName>
+        <externalId>false</externalId>
+        <label>Reviewer</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supervision_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Supervision Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Supervision_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Supervision Rating</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Supervision__c</fullName>
+        <externalId>false</externalId>
+        <label>Supervision</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <controllingField>Manager_Status__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Encourages staff development</fullName>
+                    <default>false</default>
+                    <label>Encourages staff development</label>
+                </value>
+                <value>
+                    <fullName>Provides motivation and guidance</fullName>
+                    <default>false</default>
+                    <label>Provides motivation and guidance</label>
+                </value>
+                <value>
+                    <fullName>Clearly defines expectations</fullName>
+                    <default>false</default>
+                    <label>Clearly defines expectations</label>
+                </value>
+                <value>
+                    <fullName>Understands and adheres to policy</fullName>
+                    <default>false</default>
+                    <label>Understands and adheres to policy</label>
+                </value>
+                <value>
+                    <fullName>Treats problems with sensitivity</fullName>
+                    <default>false</default>
+                    <label>Treats problems with sensitivity</label>
+                </value>
+                <value>
+                    <fullName>Demonstrates leadership</fullName>
+                    <default>false</default>
+                    <label>Demonstrates leadership</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Managing Others</controllingFieldValue>
+                <valueName>Encourages staff development</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Managing Others</controllingFieldValue>
+                <valueName>Provides motivation and guidance</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Managing Others</controllingFieldValue>
+                <valueName>Clearly defines expectations</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Managing Others</controllingFieldValue>
+                <valueName>Understands and adheres to policy</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Managing Others</controllingFieldValue>
+                <valueName>Treats problems with sensitivity</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Managing Others</controllingFieldValue>
+                <valueName>Demonstrates leadership</valueName>
+            </valueSettings>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Teamwork_Cooperation_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Teamwork/Cooperation Rating</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Teamwork_and_Cooperation_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Teamwork and Cooperation Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Teamwork_and_Cooperation__c</fullName>
+        <externalId>false</externalId>
+        <label>Teamwork and Cooperation</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Works with others toward success</fullName>
+                    <default>false</default>
+                    <label>Works with others toward success</label>
+                </value>
+                <value>
+                    <fullName>Shows concern for others</fullName>
+                    <default>false</default>
+                    <label>Shows concern for others</label>
+                </value>
+                <value>
+                    <fullName>Earns respect &amp; confidence of others</fullName>
+                    <default>false</default>
+                    <label>Earns respect &amp; confidence of others</label>
+                </value>
+                <value>
+                    <fullName>Sets group success as priority</fullName>
+                    <default>false</default>
+                    <label>Sets group success as priority</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <label>Performance Review</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PER-REV-{00000}</displayFormat>
+        <label>Review Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Performance Reviews</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Employee__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Review_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Review_Overall_Score__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Employee__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Review_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Reviewer__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchResultsAdditionalFields>Employee__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Review_Overall_Score__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Review_Type__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

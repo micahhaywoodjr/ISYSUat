@@ -1,0 +1,15 @@
+<apex:page controller="viewCaseNoteEntries">
+<apex:pageMessages />
+<apex:form >
+<apex:pageBlock >
+<apex:actionFunction name="save" action="{!saveAssignment}"/>
+	<apex:pageBlockButtons location="both">
+		<apex:commandButton rerender="none" value="Confirm and Save" onclick="if(confirm('Are you sure?')){save();}" />
+		<apex:commandButton action="{!backToView}" immediate="true" value="Back to Case Note Entries"/>
+	</apex:pageBlockButtons>
+	<apex:pageBlockSection >
+		<apex:inputField value="{!oppReassign.Report__c}"/>
+	</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

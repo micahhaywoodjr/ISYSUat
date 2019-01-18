@@ -1,0 +1,949 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>CTCT2__CTCT_Password__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This password is encrypted and cannot be read by any Salesforce user.</inlineHelpText>
+        <label>CTCT Password</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CTCT2__CTCT_Username__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <inlineHelpText>Your Constant Contact user name.  Click the Create an Account link if you do not have a Constant Contact account.</inlineHelpText>
+        <label>CTCT Username</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Daily_Frequency__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Daily Frequency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>CTCT2__Sync_Frequency__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Every 2 Hours</fullName>
+                    <default>false</default>
+                    <label>Every 2 Hours</label>
+                </value>
+                <value>
+                    <fullName>Every 4 Hours</fullName>
+                    <default>false</default>
+                    <label>Every 4 Hours</label>
+                </value>
+                <value>
+                    <fullName>Every 8 Hours</fullName>
+                    <default>false</default>
+                    <label>Every 8 Hours</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Daily</controllingFieldValue>
+                <valueName>Every 2 Hours</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Daily</controllingFieldValue>
+                <valueName>Every 4 Hours</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Daily</controllingFieldValue>
+                <valueName>Every 8 Hours</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Day_Of_The_Month__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Day Of The Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>CTCT2__Sync_Frequency__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+                <value>
+                    <fullName>11</fullName>
+                    <default>false</default>
+                    <label>11</label>
+                </value>
+                <value>
+                    <fullName>12</fullName>
+                    <default>false</default>
+                    <label>12</label>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                    <label>13</label>
+                </value>
+                <value>
+                    <fullName>14</fullName>
+                    <default>false</default>
+                    <label>14</label>
+                </value>
+                <value>
+                    <fullName>15</fullName>
+                    <default>false</default>
+                    <label>15</label>
+                </value>
+                <value>
+                    <fullName>16</fullName>
+                    <default>false</default>
+                    <label>16</label>
+                </value>
+                <value>
+                    <fullName>17</fullName>
+                    <default>false</default>
+                    <label>17</label>
+                </value>
+                <value>
+                    <fullName>18</fullName>
+                    <default>false</default>
+                    <label>18</label>
+                </value>
+                <value>
+                    <fullName>19</fullName>
+                    <default>false</default>
+                    <label>19</label>
+                </value>
+                <value>
+                    <fullName>20</fullName>
+                    <default>false</default>
+                    <label>20</label>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                    <label>21</label>
+                </value>
+                <value>
+                    <fullName>22</fullName>
+                    <default>false</default>
+                    <label>22</label>
+                </value>
+                <value>
+                    <fullName>23</fullName>
+                    <default>false</default>
+                    <label>23</label>
+                </value>
+                <value>
+                    <fullName>24</fullName>
+                    <default>false</default>
+                    <label>24</label>
+                </value>
+                <value>
+                    <fullName>25</fullName>
+                    <default>false</default>
+                    <label>25</label>
+                </value>
+                <value>
+                    <fullName>26</fullName>
+                    <default>false</default>
+                    <label>26</label>
+                </value>
+                <value>
+                    <fullName>27</fullName>
+                    <default>false</default>
+                    <label>27</label>
+                </value>
+                <value>
+                    <fullName>28</fullName>
+                    <default>false</default>
+                    <label>28</label>
+                </value>
+                <value>
+                    <fullName>29</fullName>
+                    <default>false</default>
+                    <label>29</label>
+                </value>
+                <value>
+                    <fullName>30</fullName>
+                    <default>false</default>
+                    <label>30</label>
+                </value>
+                <value>
+                    <fullName>31</fullName>
+                    <default>false</default>
+                    <label>31</label>
+                </value>
+                <value>
+                    <fullName>Last</fullName>
+                    <default>false</default>
+                    <label>Last</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>1</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>2</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>3</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>4</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>5</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>6</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>7</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>8</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>9</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>10</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>11</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>12</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>13</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>14</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>15</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>16</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>17</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>18</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>19</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>20</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>21</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>22</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>23</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>24</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>25</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>26</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>27</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>28</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>29</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>30</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>31</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Last</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Friday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Friday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Monday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Monday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Monthly_Frequency__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Monthly Frequency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>CTCT2__Sync_Frequency__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Specific day</fullName>
+                    <default>false</default>
+                    <label>Specific day</label>
+                </value>
+                <value>
+                    <fullName>Specific weekday</fullName>
+                    <default>false</default>
+                    <label>Specific weekday</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Specific day</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Specific weekday</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Monthly_On__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Monthly On</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>CTCT2__Sync_Frequency__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1st</fullName>
+                    <default>false</default>
+                    <label>1st</label>
+                </value>
+                <value>
+                    <fullName>2nd</fullName>
+                    <default>false</default>
+                    <label>2nd</label>
+                </value>
+                <value>
+                    <fullName>3rd</fullName>
+                    <default>false</default>
+                    <label>3rd</label>
+                </value>
+                <value>
+                    <fullName>4th</fullName>
+                    <default>false</default>
+                    <label>4th</label>
+                </value>
+                <value>
+                    <fullName>last</fullName>
+                    <default>false</default>
+                    <label>last</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>1st</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>2nd</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>3rd</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>4th</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>last</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Of_Every_Month__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Of Every Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>CTCT2__Sync_Frequency__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Sunday</fullName>
+                    <default>false</default>
+                    <label>Sunday</label>
+                </value>
+                <value>
+                    <fullName>Monday</fullName>
+                    <default>false</default>
+                    <label>Monday</label>
+                </value>
+                <value>
+                    <fullName>Tuesday</fullName>
+                    <default>false</default>
+                    <label>Tuesday</label>
+                </value>
+                <value>
+                    <fullName>Wednesday</fullName>
+                    <default>false</default>
+                    <label>Wednesday</label>
+                </value>
+                <value>
+                    <fullName>Thursday</fullName>
+                    <default>false</default>
+                    <label>Thursday</label>
+                </value>
+                <value>
+                    <fullName>Friday</fullName>
+                    <default>false</default>
+                    <label>Friday</label>
+                </value>
+                <value>
+                    <fullName>Saturday</fullName>
+                    <default>false</default>
+                    <label>Saturday</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Sunday</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Monday</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Tuesday</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Wednesday</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Thursday</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Friday</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Saturday</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Preferred_Start_Hour__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>CASE( CTCT2__Preferred_Start_Time__c , &quot;12:00 AM&quot;, &quot;00&quot;,
+&quot;1:00 AM&quot;, &quot;01&quot;,
+&quot;2:00 AM&quot;, &quot;02&quot;,
+&quot;3:00 AM&quot;, &quot;03&quot;,
+&quot;4:00 AM&quot;, &quot;04&quot;,
+&quot;5:00 AM&quot;, &quot;05&quot;,
+&quot;6:00 AM&quot;, &quot;06&quot;,
+&quot;7:00 AM&quot;, &quot;07&quot;,
+&quot;8:00 AM&quot;, &quot;08&quot;,
+&quot;9:00 AM&quot;, &quot;09&quot;,
+&quot;10:00 AM&quot;, &quot;10&quot;,
+&quot;11:00 AM&quot;, &quot;11&quot;,
+&quot;12:00 PM&quot;, &quot;12&quot;,
+&quot;1:00 PM&quot;, &quot;13&quot;,
+&quot;2:00 PM&quot;, &quot;14&quot;,
+&quot;3:00 PM&quot;, &quot;15&quot;,
+&quot;4:00 PM&quot;, &quot;16&quot;,
+&quot;5:00 PM&quot;, &quot;17&quot;,
+&quot;6:00 PM&quot;, &quot;18&quot;,
+&quot;7:00 PM&quot;, &quot;19&quot;,
+&quot;8:00 PM&quot;, &quot;20&quot;,
+&quot;9:00 PM&quot;, &quot;21&quot;,
+&quot;10:00 PM&quot;, &quot;22&quot;,
+&quot;11:00 PM&quot;, &quot;23&quot;, &quot;00&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Military time representation of preferred start time.</inlineHelpText>
+        <label>Preferred Start Hour</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Preferred_Start_Time__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Exact start time will depend on job queue activity.</inlineHelpText>
+        <label>Preferred Start Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>12:00 AM</fullName>
+                    <default>false</default>
+                    <label>12:00 AM</label>
+                </value>
+                <value>
+                    <fullName>1:00 AM</fullName>
+                    <default>false</default>
+                    <label>1:00 AM</label>
+                </value>
+                <value>
+                    <fullName>2:00 AM</fullName>
+                    <default>false</default>
+                    <label>2:00 AM</label>
+                </value>
+                <value>
+                    <fullName>3:00 AM</fullName>
+                    <default>false</default>
+                    <label>3:00 AM</label>
+                </value>
+                <value>
+                    <fullName>4:00 AM</fullName>
+                    <default>false</default>
+                    <label>4:00 AM</label>
+                </value>
+                <value>
+                    <fullName>5:00 AM</fullName>
+                    <default>false</default>
+                    <label>5:00 AM</label>
+                </value>
+                <value>
+                    <fullName>6:00 AM</fullName>
+                    <default>false</default>
+                    <label>6:00 AM</label>
+                </value>
+                <value>
+                    <fullName>7:00 AM</fullName>
+                    <default>false</default>
+                    <label>7:00 AM</label>
+                </value>
+                <value>
+                    <fullName>8:00 AM</fullName>
+                    <default>false</default>
+                    <label>8:00 AM</label>
+                </value>
+                <value>
+                    <fullName>9:00 AM</fullName>
+                    <default>false</default>
+                    <label>9:00 AM</label>
+                </value>
+                <value>
+                    <fullName>10:00 AM</fullName>
+                    <default>false</default>
+                    <label>10:00 AM</label>
+                </value>
+                <value>
+                    <fullName>11:00 AM</fullName>
+                    <default>false</default>
+                    <label>11:00 AM</label>
+                </value>
+                <value>
+                    <fullName>12:00 PM</fullName>
+                    <default>false</default>
+                    <label>12:00 PM</label>
+                </value>
+                <value>
+                    <fullName>1:00 PM</fullName>
+                    <default>false</default>
+                    <label>1:00 PM</label>
+                </value>
+                <value>
+                    <fullName>2:00 PM</fullName>
+                    <default>false</default>
+                    <label>2:00 PM</label>
+                </value>
+                <value>
+                    <fullName>3:00 PM</fullName>
+                    <default>false</default>
+                    <label>3:00 PM</label>
+                </value>
+                <value>
+                    <fullName>4:00 PM</fullName>
+                    <default>false</default>
+                    <label>4:00 PM</label>
+                </value>
+                <value>
+                    <fullName>5:00 PM</fullName>
+                    <default>false</default>
+                    <label>5:00 PM</label>
+                </value>
+                <value>
+                    <fullName>6:00 PM</fullName>
+                    <default>false</default>
+                    <label>6:00 PM</label>
+                </value>
+                <value>
+                    <fullName>7:00 PM</fullName>
+                    <default>false</default>
+                    <label>7:00 PM</label>
+                </value>
+                <value>
+                    <fullName>8:00 PM</fullName>
+                    <default>false</default>
+                    <label>8:00 PM</label>
+                </value>
+                <value>
+                    <fullName>9:00 PM</fullName>
+                    <default>false</default>
+                    <label>9:00 PM</label>
+                </value>
+                <value>
+                    <fullName>10:00 PM</fullName>
+                    <default>false</default>
+                    <label>10:00 PM</label>
+                </value>
+                <value>
+                    <fullName>11:00 PM</fullName>
+                    <default>false</default>
+                    <label>11:00 PM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Saturday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Saturday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CTCT2__ScheduledJobId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>ScheduledJobId</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Sunday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sunday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Sync_Frequency__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sync Frequency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No Sync</fullName>
+                    <default>false</default>
+                    <label>No Sync</label>
+                </value>
+                <value>
+                    <fullName>Manual</fullName>
+                    <default>false</default>
+                    <label>Manual</label>
+                </value>
+                <value>
+                    <fullName>Daily</fullName>
+                    <default>true</default>
+                    <label>Daily</label>
+                </value>
+                <value>
+                    <fullName>Weekly</fullName>
+                    <default>false</default>
+                    <label>Weekly</label>
+                </value>
+                <value>
+                    <fullName>Monthly</fullName>
+                    <default>false</default>
+                    <label>Monthly</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Sync_Opt_Out_From_CTCT__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Contacts who opt out in Constant Contact will be marked as opting out in Salesforce.  Contacts who opt in in Constant Contact will be marked as opting in in Salesforce.</inlineHelpText>
+        <label>Sync Opt Out From CTCT</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Sync_Opt_Out_To_CTCT__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Contacts who opt out in Salesforce will be marked as opting out in Constant Contact.  Contacts who opt in in Salesforce WILL NOT be marked as opting in in Constant Contact.</inlineHelpText>
+        <label>Sync Opt Out To CTCT</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Thursday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Thursday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Tuesday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Tuesday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CTCT2__Wednesday__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Wednesday</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Constant Contact Settings</label>
+    <listViews>
+        <fullName>CTCT2__All</fullName>
+        <columns>NAME</columns>
+        <columns>CTCT2__CTCT_Username__c</columns>
+        <columns>CTCT2__Sync_Frequency__c</columns>
+        <columns>CTCT2__Daily_Frequency__c</columns>
+        <columns>CTCT2__Monthly_On__c</columns>
+        <columns>CTCT2__Of_Every_Month__c</columns>
+        <columns>CTCT2__Day_Of_The_Month__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>Set-{0}</displayFormat>
+        <label>Setting</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Constant Contact Settings</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>CTCT2__CTCT_Username__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CTCT2__Sync_Frequency__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CTCT2__Sync_Opt_Out_From_CTCT__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CTCT2__Sync_Opt_Out_To_CTCT__c</customTabListAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Date_Worked__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Worked</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Report_Listing__c</fullName>
+        <externalId>false</externalId>
+        <label>Report Listing</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>12</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reviewer_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Reviewer Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Allaire Jutting</fullName>
+                    <default>false</default>
+                    <label>Allaire Jutting</label>
+                </value>
+                <value>
+                    <fullName>Amanda Campos</fullName>
+                    <default>false</default>
+                    <label>Amanda Campos</label>
+                </value>
+                <value>
+                    <fullName>Britt Branch</fullName>
+                    <default>false</default>
+                    <label>Britt Branch</label>
+                </value>
+                <value>
+                    <fullName>Christina Garcia</fullName>
+                    <default>false</default>
+                    <label>Christina Garcia</label>
+                </value>
+                <value>
+                    <fullName>Devon Asmus</fullName>
+                    <default>false</default>
+                    <label>Devon Asmus</label>
+                </value>
+                <value>
+                    <fullName>Eileen Jutting</fullName>
+                    <default>false</default>
+                    <label>Eileen Jutting</label>
+                </value>
+                <value>
+                    <fullName>Shelagh Ghering</fullName>
+                    <default>false</default>
+                    <label>Shelagh Ghering</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>of_Hours_Worked__c</fullName>
+        <externalId>false</externalId>
+        <label># of Hours Worked</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Reports_Approved__c</fullName>
+        <externalId>false</externalId>
+        <label># of Reports Approved</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Reports_Touched__c</fullName>
+        <externalId>false</externalId>
+        <label># of Reports Touched</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Quality Assurance</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Reviewer_Name__c</columns>
+        <columns>Date_Worked__c</columns>
+        <columns>of_Hours_Worked__c</columns>
+        <columns>of_Reports_Touched__c</columns>
+        <columns>of_Reports_Approved__c</columns>
+        <columns>Report_Listing__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>QA-{000000}</displayFormat>
+        <label>Quality Assurance Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Quality Assurance</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

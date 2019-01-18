@@ -1,0 +1,80 @@
+<apex:page Controller="selectHealthcareProvider">
+<style>
+.container
+{
+   overflow:auto;  
+   height:250px;  
+   align:bottom;
+}
+.matchingcontainer
+{
+   overflow:auto;  
+   height:450px;  
+   align:bottom;
+}
+</style>
+<apex:form > 
+    <apex:PageBlock title="Healthcare Providers" mode="view" rendered="{!OR(bShowHP,bShowEmp)}">
+        <apex:pageBlockButtons >
+           <apex:commandButton action="{!ButtonClickEventContinue}" value="Continue"/>
+           <apex:commandButton action="{!ButtonClickEventCancel}" value="Cancel" immediate="true"/>
+        </apex:pageBlockButtons>
+        <apex:outputPanel layout="block" styleClass="container"  rendered="{!bShowHP}"> 
+        <apex:pageBlockTable value="{!HealthcareProviderWrapperList}" var="item">
+            <apex:column headerValue="Contact">
+                <a href="{!item.sPath}">{!item.HealthcareProvider.Contact__r.Name}</a>
+            </apex:column>
+            <apex:column headerValue="Phone" value="{!item.HealthcareProvider.Phone__c}"/>
+            <apex:column headerValue="Mailing Address" value="{!item.HealthcareProvider.Mailing_Address__c}"/>
+            <apex:column headerValue="Specialty" value="{!item.HealthcareProvider.Specialty__c}"/>
+            <apex:column headerValue="Primary" value="{!item.HealthcareProvider.Primary__c}"/>
+        </apex:pageBlockTable>
+        </apex:outputPanel>
+        <apex:outputPanel layout="block" rendered="{!bShowEmp}"> 
+        	<apex:PageBlock title="Employee" mode="view">
+	        <apex:pageBlockTable value="{!AccountWrapperList}" var="item">
+	            <apex:column headerValue="Name">
+	                <a href="{!item.sPath}">{!item.oAccount.Name}</a>
+	            </apex:column>
+	            <apex:column headerValue="Title" value="{!item.oAccount.PersonTitle}"/>
+	            <apex:column headerValue="Phone" value="{!item.oAccount.Phone}"/>
+	            <apex:column headerValue="Email" value="{!item.oAccount.Personal_Email__pc}"/>
+	            <apex:column headerValue="Mailing City" value="{!item.oAccount.PersonMailingCity}"/>
+	        </apex:pageBlockTable>
+	        </apex:PageBlock>
+        </apex:outputPanel>
+    </apex:PageBlock>
+    <BR/>
+    <apex:PageBlock title="Search Contact" mode="view">
+        
+        <apex:PageBlockSection title="Criteria" columns="2" collapsible="false">
+            <apex:PageBlockSectionItem >
+                <apex:outputLabel value="Name"/>
+                <apex:inputText value="{!strContactName}"/>
+            </apex:PageBlockSectionItem>
+            <apex:PageBlockSectionItem >
+                <apex:outputLabel value="Mailing City"/>
+                <apex:inputText value="{!objContact.MailingCity}"/>
+            </apex:PageBlockSectionItem>
+        </apex:PageBlockSection>
+        <br/><center>
+        <apex:commandButton value="Search for Contact" action="{!ButtonClickEventSearchForContact}"/></center>
+        <br/><br/>
+        <apex:outputPanel layout="block" styleClass="container" rendered="{!bShowContact}"> 
+        <apex:pageBlockTable value="{!ContactWrapperList}" var="item">
+            <apex:column headerValue="Name">
+                <a href="{!item.sPath}">{!item.oContact.Name}</a>
+            </apex:column>
+            <apex:column headerValue="Account Name" value="{!item.oContact.AccountId}"/>
+            <apex:column headerValue="Title" value="{!item.oContact.Title}"/>
+            <apex:column headerValue="Phone" value="{!item.oContact.Phone}"/>
+            <apex:column headerValue="Email" value="{!item.oContact.Email}"/>
+            <apex:column headerValue="Mailing City" value="{!item.oContact.MailingCity}"/>
+        </apex:pageBlockTable>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!bShowNoResultMsg}">
+            <apex:PageMessages />
+        </apex:outputPanel>
+    </apex:PageBlock>
+</apex:form>
+</apex:page>

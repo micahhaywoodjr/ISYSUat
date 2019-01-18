@@ -1,0 +1,213 @@
+<apex:page controller="Payroll" sidebar="false" showheader="false" renderAs="pdf" standardStylesheets="false">
+<head>
+<style>
+.infobox {
+  border: 1px dashed #CCCCCC;
+  font-size: 90%;
+}
+table.myFont{ 
+font-family: Verdana;
+font-weight: normal;
+font-size: 12px;
+}
+@page { 
+
+size: letter portrait;
+    
+    
+margin-top: 100px;
+    
+margin-bottom: 80px;
+    
+    
+@top-left {
+        
+content: element(header_left);
+    }
+    
+    
+@top-center {
+        
+content: element(header_center);
+    }
+    
+    
+@top-right {
+        
+content: element(header_right);
+    }
+    
+    
+@bottom-left {
+        
+content: element(footer_left);
+    }
+    
+    
+@bottom-center {
+        
+content: element(footer_center);
+    }
+    
+    
+@bottom-right {
+        
+content: "Page " counter(page) " of " counter(pages);
+    }
+}
+
+.header_left {
+    
+text-align: left;
+    position: running(header_left);
+}
+
+.header_center{
+    
+text-align: center;
+    position: running(header_center);
+}
+
+.header_right {
+    
+text-align: right;
+    position: running(header_right);
+}
+
+.footer_left {
+    
+text-align: left;
+    position: running(footer_left);
+}
+
+.footer_center {
+    
+text-align: center;
+    position: running(footer_center);
+}
+
+.footer_right {
+    
+text-align: right;
+    position: running(footer_right);
+}
+
+.pageNumber:before {
+    
+content: counter(page); 
+}
+
+.pageCount:before {
+    
+content: counter(pages);  
+}
+</style>
+</head>
+
+<table class="myFont" width="100%" align="center">     
+        <tr>
+            <td align="center"><b>Approved Case Note Progress Units</b></td>
+            <td rowspan="2" align="left"><apex:image url="{!$Resource.isISYSLogoN}" width="60px" height="50px"/></td>
+        </tr>
+        <tr>
+            <td align="center">Pay Period&nbsp;<apex:outputField value="{!prTemp.sDate__c}"/>-<apex:outputField value="{!prTemp.eDate__c}"/></td>
+            
+        </tr>
+</table>
+<p>{!fullName}</p>
+<table class="myFont" width="100%" cellSpacing="0">
+    <tr>        
+        <th >Case Number</th>
+        <th >Date Submitted</th>
+        <th >Case Name</th>
+        <th >Submitted<br/> Progress Units</th>
+        <th >Approved<br/> Progress Units</th>
+        <th >Submitted<br/> T/W Units</th>
+        <th >Approved<br/> T/W Units</th>
+        <th >Comments</th>
+    </tr>
+    <apex:repeat value="{!payrollTempSaveList}" var="pr">
+        <tr>            
+            <td><apex:outputField value="{!pr.CaseNumber__c}"/></td>
+            <td><apex:outputField value="{!pr.DateSubmitted__c}"/></td>
+            <td><apex:outputField value="{!pr.CaseName__c}"/></td>
+            <td><apex:outputField value="{!pr.ApprovedProfBillableHoursCNE__c}"/></td>
+            <td><apex:outputField value="{!pr.ApprovedProfBillableHours__c}"/></td>
+            <td><apex:outputField value="{!pr.ApprovedTWBillableHoursCNE__c}"/></td>
+            <td><apex:outputField value="{!pr.ApprovedTWBillableHours__c}"/></td>
+            <td><apex:outputField value="{!pr.Comments__c}"/></td>
+        </tr>
+    </apex:repeat>
+    <tr style="background-color:#DDDDDD;">      
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Total: <span class="profBillSum">{!approvedProfBillHoursInitialSum}</span></td>
+        <td>&nbsp;</td>
+        <td>Total: <span class="profBillSum">{!approvedTWBillHoursInitialSum}</span></td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table width="100%" class="myFont">     
+    <tr>
+        <td>Total Approved Case Management Progress Units:&nbsp;<apex:outputField value="{!prTemp.TotalCaseManagementBillableTime__c}"/></td>
+    </tr>
+    <tr>
+        <td>HR Notes:&nbsp;<apex:outputField value="{!prTemp.HrNotes__c}"/></td>
+    </tr>
+</table>
+<div style="page-break-before:always;"></div>
+<p class="myFont">
+{!firstName},<br/>
+As an exempt employee you receive the same salary every pay period, as reflected on your pay voucher. This memo is intended
+to confirm any approved bonus pay for each pay period based on ISYS' protocol and policy. If the total approved progress units 
+from page one is under the minimum required treshold, you will see an "N/A" shown in the corresponding box.  Any approved progress
+units exceeding the minimum threshold will be shown in the "Total Approved Progress Units" box below. 
+</p>
+<table width="100%">
+<tr align="center">
+    <th colspan="2" style="background-color:#DDDDDD;">Payroll Memo<br/><apex:outputField value="{!prTemp.sDate__c}"/>-<apex:outputField value="{!prTemp.eDate__c}"/></th>
+</tr>
+<tr>
+    <td>Total Approved Progess Units*<br/><font style="font-size: 8px;">*Amount approved for CM Bonus Pay (After meeting the minimum threshold requirement)</font></td>
+    <td style="border:1px solid black;"><apex:outputText value="{!IF(prTemp.TotalCaseManagementBillableTime__c< threshold,'N/A',(prTemp.TotalCaseManagementBillableTime__c- threshold))}"/></td>
+</tr>
+<tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td>ISYS Approved/Additional Bonus or PTO:<br/><font style="font-size: 8px;">(if applicable)</font></td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td align="right">PTO</td>
+    <td style="border:1px solid black;">&nbsp;</td>
+</tr>
+<tr>
+    <td align="right">Special Assignment Bonus</td>
+    <td style="border:1px solid black;">&nbsp;</td>
+</tr>
+<tr>
+    <td align="right">New Hire Supplement</td>
+    <td style="border:1px solid black;">&nbsp;</td>
+</tr>
+<tr>
+    <td align="right">CareerSmart Activity</td>
+    <td style="border:1px solid black;">&nbsp;</td>
+</tr>
+<tr>
+    <td align="right">Other</td>
+    <td style="border:1px solid black;"><div style="width: 300px;">&nbsp;</div></td>
+</tr>
+<tr>
+    <td align="right">Comments</td>
+    <td style="border:1px solid black;"><div style="width: 300px;">&nbsp;</div></td>
+</tr>
+</table>
+</apex:page>

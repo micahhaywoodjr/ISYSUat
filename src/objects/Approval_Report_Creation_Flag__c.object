@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This flag controls whether the Approval Report Custom Object is created for all Opportunity&apos;s Approval Records or for the Current Date&apos;s</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Run_For_All__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Run For All</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Approval Report Creation Flag</label>
+    <visibility>Public</visibility>
+</CustomObject>

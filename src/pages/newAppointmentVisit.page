@@ -1,0 +1,65 @@
+<apex:page Controller="selectHealthcareProvider">
+<style>
+.container
+{
+   overflow:auto;  
+   height:250px;  
+   align:bottom;
+}
+.matchingcontainer
+{
+   overflow:auto;  
+   height:450px;  
+   align:bottom;
+}
+</style>
+<apex:form >
+    <apex:PageBlock title="Healthcare Providers" mode="view" rendered="{!bShowHP}">
+        <apex:pageBlockButtons >
+           <apex:commandButton action="{!ContinueMe}" value="Continue"/>
+           <apex:commandButton action="{!returnMe}" value="Cancel" immediate="true"/>
+        </apex:pageBlockButtons>
+        <apex:outputPanel layout="block" styleClass="container"  > 
+        <apex:pageBlockTable value="{!lstWrapHP}" var="item">
+            <apex:column headerValue="Record #" value="{!item.oHP.Name}"/>
+            <apex:column headerValue="Contact">
+                <a href="{!item.sPath}">{!item.oHP.Contact__r.Name}</a>
+            </apex:column>
+            <apex:column headerValue="Phone" value="{!item.oHP.Phone__c}"/>
+            <apex:column headerValue="Mailing Address" value="{!item.oHP.Mailing_Address__c}"/>
+            <apex:column headerValue="Specialty" value="{!item.oHP.Specialty__c}"/>
+            <apex:column headerValue="Primary" value="{!item.oHP.Primary__c}"/>
+        </apex:pageBlockTable>
+        </apex:outputPanel>
+    </apex:PageBlock>
+    <BR/>
+    <apex:PageBlock title="Search Contact" mode="view">
+        <apex:PageBlockSection title="Criteria" columns="2" collapsible="false">
+            <apex:PageBlockSectionItem >
+                <apex:outputLabel value="Name"/>
+                <apex:inputText value="{!strContactName}"/>
+            </apex:PageBlockSectionItem>
+            <apex:PageBlockSectionItem >
+                <apex:outputPanel >
+	                <apex:outputLabel value="Mailing City"/>
+	                <apex:inputField value="{!objContact.MailingCity}"/>
+	                &nbsp;&nbsp;&nbsp;<apex:commandButton value="Go" action="{!goGetContact}"/>
+                </apex:outputPanel>
+            </apex:PageBlockSectionItem>
+        </apex:PageBlockSection>
+        <br/><br/>
+        <apex:outputPanel layout="block" styleClass="container" rendered="{!bShowContact}"> 
+        <apex:pageBlockTable value="{!lstWrapContact}" var="item">
+            <apex:column headerValue="Name">
+                <a href="{!item.sPath}">{!item.oContact.Name}</a>
+            </apex:column>
+            <apex:column headerValue="Account Name" value="{!item.oContact.AccountId}"/>
+            <apex:column headerValue="Title" value="{!item.oContact.Title}"/>
+            <apex:column headerValue="Phone" value="{!item.oContact.Phone}"/>
+            <apex:column headerValue="Email" value="{!item.oContact.Email}"/>
+            <apex:column headerValue="Email" value="{!item.oContact.MailingCity}"/>
+        </apex:pageBlockTable>
+        </apex:outputPanel>
+    </apex:PageBlock>
+</apex:form>
+</apex:page>
